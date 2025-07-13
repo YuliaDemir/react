@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Component } from 'react'
 import './App.css'
+import Search from './components/search'
+import CardList from './components/card-list'
+import type { Pokemons } from './components/types/interfaces';
+import Loader from './components/loader'
 
-function App() {
-  const [count, setCount] = useState(0)
+class App extends Component<{}, { data: Pokemons[], error: Error | null, isLoading: boolean }>{
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  state = {
+    data: [],
+    error: null,
+    isLoading: false,
+  };
+
+  async componentDidMount(): Promise<void> {
+    const requestedData = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1400").then(res => res.json());
+    this.setState({ data: requestedData.results });
+  }
+
+  handleSearch = async (query: string) => {
+    try {
+      this.setState({ isLoading: true })
+      const requestedData = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`).then(res => {
+        if (!res.ok) {
+          throw new Error('Not found!');
+        }
+        return res.json();
+      });
+      
+      this.setState({ data: [{name: query, url: `https://pokeapi.co/api/v2/pokemon/${query}`}], isLoading: false});
+    }
+    catch (err) {
+      this.setState({ error: err as Error, isLoading: false})
+    }
+  }
+
+
+  render() { 
+    if (this.state.error) {
+      throw this.state.error
+    }
+    return (
+      <>
+        <Search value="" onSearch={this.handleSearch}/>
+        {this.state.isLoading ? (
+          <Loader />
+        ) : (
+          <CardList data={this.state.data}/>
+        )}
+        <button onClick={() => this.setState({ error: new Error('Test error')})}>Throw error</button>
+      </>
+    )
+  }
 }
-
 export default App
