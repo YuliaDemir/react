@@ -1,17 +1,17 @@
-export  interface CardProps {
-    name: string;
-    description: string;
-};
-
-export interface PropsData {
-    data: CardProps[];
+export interface CardProps {
+  name: string;
+  description: string;
 }
 
-export  interface ListProps {
-    data: Pokemons[];
-};
+export interface PropsData {
+  data: CardProps[];
+}
+
+export interface ListProps {
+  data: Pokemons[];
+}
 
 export interface Pokemons {
-    name: string;
-    url: string;
+  name: string;
+  url: string;
 }
