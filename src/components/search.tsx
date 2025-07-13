@@ -13,7 +13,7 @@ interface SearchProps {
 class Search extends Component<SearchProps, SearchState>{
 
     state = {
-        value: this.props.value || "",
+        value: localStorage.getItem("query") || "",
     }
 
     render() {

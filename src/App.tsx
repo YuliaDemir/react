@@ -14,14 +14,20 @@ class App extends Component<{}, { data: Pokemons[], error: Error | null, isLoadi
   };
 
   async componentDidMount(): Promise<void> {
-    const requestedData = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1400").then(res => res.json());
-    this.setState({ data: requestedData.results });
+    const previousQuery = localStorage.getItem("query")?.trim();
+    if (previousQuery) {
+      this.handleSearch(previousQuery);
+    }
+    else {
+      const requestedData = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20").then(res => res.json());
+      this.setState({ data: requestedData.results });
+    }
   }
 
   handleSearch = async (query: string) => {
     try {
       this.setState({ isLoading: true })
-      const requestedData = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`).then(res => {
+      await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`).then(res => {
         if (!res.ok) {
           throw new Error('Not found!');
         }
@@ -29,6 +35,7 @@ class App extends Component<{}, { data: Pokemons[], error: Error | null, isLoadi
       });
       
       this.setState({ data: [{name: query, url: `https://pokeapi.co/api/v2/pokemon/${query}`}], isLoading: false});
+      localStorage.setItem("query", query);
     }
     catch (err) {
       this.setState({ error: err as Error, isLoading: false})
