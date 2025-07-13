@@ -6,7 +6,7 @@ import type { Pokemons } from './components/types/interfaces';
 import Loader from './components/loader';
 
 class App extends Component<
-  {},
+  Record<string, never>,
   { data: Pokemons[]; error: Error | null; isLoading: boolean }
 > {
   state = {
