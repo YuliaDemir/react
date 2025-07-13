@@ -6,18 +6,24 @@ class CardList extends Component<ListProps> {
 
     render() {
         return (
-            <ul>
-                {this.props.data.map(card => {
-                    const urlParts = card.url.split("/");
-                    const id = urlParts[urlParts.length - 2];
+            <div className="container">
+                <header className="header">
+                    <h3>Item Name</h3>
+                    <h3>Item Description</h3>
+                </header>
+                <main className="main">
+                    {this.props.data.map(card => {
+                        const urlParts = card.url.split("/");
+                        const id = urlParts[urlParts.length - 2];
 
-                    return (
-                    <li key={id}>
-                        <Card name={card.name} description={card.url}/>
-                    </li>
-                    )
-            })}
-            </ul>
+                        return (
+                        <div key={id}>
+                            <Card name={card.name} description={card.url}/>
+                        </div>
+                        )
+                })}
+                </main>
+            </div>
         )
     }
 }
