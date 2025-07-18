@@ -22,7 +22,7 @@ describe('Error Component', () => {
         (console.error as jest.Mock).mockRestore();
     })
 
-    test ('Renders and show error message', () => {
+    test ('Renders and shows fallback UI', () => {
         render(
             <ErrorBoundary>
                 <ProblematicComponent/>
@@ -31,7 +31,7 @@ describe('Error Component', () => {
         expect(screen.getByText(/something went wrong*/i)).toBeInTheDocument();
     });
 
-    test ('Renders error button', () => {
+    test ('shows an error button', () => {
         render(
             <ErrorBoundary>
                 <ProblematicComponent/>
