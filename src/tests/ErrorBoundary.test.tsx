@@ -1,27 +1,44 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import ErrorBoundary from '../ErrorBoundary';
 import { Component } from 'react';
 
 class ProblematicComponent extends Component{
+
     render() {
-    throw new Error('Error!');
-    return (
-        <></>
-    );
+            throw new Error('Error!');
+        return (
+            <>work</>
+        );
     }
 }
 
 describe('Error Component', () => {
 
-    test ('Renders and show error button', () => {
+    beforeEach(() => {
         jest.spyOn(console, 'error').mockImplementation(() => {});
+    })
+
+    afterEach(() => {
+        (console.error as jest.Mock).mockRestore();
+    })
+
+    test ('Renders and show error message', () => {
         render(
             <ErrorBoundary>
-                <ProblematicComponent />
+                <ProblematicComponent/>
             </ErrorBoundary>
         );
-        expect(screen.getByText(/something went wrong./i)).toBeInTheDocument();
-        expect(screen.getByRole('button')).toBeInTheDocument();
-        (console.error as jest.Mock).mockRestore();
+        expect(screen.getByText(/something went wrong*/i)).toBeInTheDocument();
+    });
+
+    test ('Renders error button', () => {
+        render(
+            <ErrorBoundary>
+                <ProblematicComponent/>
+            </ErrorBoundary>
+        );
+
+        const button = screen.getByRole('button');
+        expect(button).toBeInTheDocument();
     });
 })
