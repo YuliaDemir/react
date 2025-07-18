@@ -2,6 +2,7 @@ export default {
     preset: 'ts-jest',
     testEnvironment: 'jsdom',
     setupFilesAfterEnv: ['<rootDir>/src/test-utils/setupTests.ts'],
+    moduleNameMapper: {'\\.(css|less|scss|sass)$': 'identity-obj-proxy'},
     coverageDirectory: 'coverage',
     collectCoverageFrom: [
         'src/**/*.{js,jsx,ts,tsx}',
