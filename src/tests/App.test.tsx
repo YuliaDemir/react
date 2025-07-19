@@ -1,32 +1,47 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import App from '../App';
+import { render, screen, waitFor } from "@testing-library/react";
+import App from "../App";
+import userEvent from '@testing-library/user-event';
 
+jest.mock('../components/loader', () => () => <div data-testid="loader">Loading...</div>);
+jest.mock('../components/search', () => (props: { value: string; onSearch: (query: string) => void}) => (
+    <button onClick={() => props.onSearch('pikachu')} data-testid="search-button">Search</button>
+));
+jest.mock('../components/card-list', () => ({ data }: { data: []}) => (
+    <div data-testid="card-list">{data.length} cards</div>
+));
 
+beforeEach(()=> {
+    global.fetch = jest.fn(async (input: RequestInfo): Promise<Response> => {
+        await new Promise(resolve => setTimeout(resolve, 100));
 
-describe('Error Component', () => {
+        if (typeof input === 'string' && input.includes('pikachu')) {
+            return Promise.resolve({
+                ok: true,
+                json: () => Promise.resolve({ name: 'pikachu'}),
+            } as Response);
+        }
+        return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({ name: 'pikachu' }),
+        } as Response);
+    }) as jest.Mock;
+});
 
-    beforeEach(() => {
-        fetchMock.resetMocks();
+afterEach(() => {
+    jest.restoreAllMocks();
+});
+
+test('shows loader while searching', async () => {
+    render(<App />);
+
+    const searchButton = screen.getByTestId('search-button');
+    await userEvent.click(searchButton);
+
+    expect(await screen.findByTestId('loader')).toBeInTheDocument();
+
+    await waitFor(() => {
+        expect(screen.queryByTestId('loader')).not.toBeInTheDocument();
     });
 
-    test ('Show loading during search', async () => {
-        fetchMock.mockResponseOnce(() => new Promise(resolve => 
-            setTimeout(() => resolve({
-        body: JSON.stringify({ name: 'pikachu' }),
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }), 100)
-        ));
-        
-        render(<App />);
-        const input = screen.getByRole('textbox');
-        fireEvent.change(input, { target: { value: 'pikachu' } });
-
-        const button = screen.getByRole('button', { name: /search/i });
-        fireEvent.click(button);
-
-        expect(screen.getByText("Loading...")).toBeInTheDocument();
-
-        await waitFor(() => expect(screen.queryByText("Loading...")).not.toBeInTheDocument());
-    });
+    expect(screen.getByTestId('card-list')).toBeInTheDocument();
 })
