@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format:fix": "prettier --write .",
-    "prepare": "husky install",
+    "prepare": "chmod +x .husky/*",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
