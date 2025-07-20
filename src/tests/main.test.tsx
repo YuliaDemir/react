@@ -10,18 +10,7 @@ jest.mock('react-dom/client', () => {
 });
 
 describe('main.tsx', () => {
-    beforeEach(() => {
-        window.fetch = jest.fn(() => Promise.resolve({
-            ok: true,
-            json: () => Promise.resolve({
-                results: [{
-                    name: 'pikachu',
-                    url: '',
-                }],
-            }),
-        })) as jest.Mock;
-    });
-
+    
     it('calls createRoot and renders app', async () => {
         const rootElement = document.createElement('div');
         rootElement.id = 'root';
