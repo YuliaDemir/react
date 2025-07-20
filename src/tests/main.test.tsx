@@ -1,8 +1,4 @@
-import { render, screen } from '@testing-library/react';
 import * as ReactDOM from 'react-dom/client';
-import ErrorBoundary from '../ErrorBoundary';
-import { StrictMode } from 'react';
-import App from '../App';
 
 jest.mock('react-dom/client', () => {
     return {
@@ -14,7 +10,6 @@ jest.mock('react-dom/client', () => {
 });
 
 describe('main.tsx', () => {
-
     beforeEach(() => {
         window.fetch = jest.fn(() => Promise.resolve({
             ok: true,

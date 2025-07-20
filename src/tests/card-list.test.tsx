@@ -18,9 +18,9 @@ describe('Card Component', () => {
 
         render(<CardList data={pokemons}/>);
 
-        expect(screen.getByText('pokemon1')).toBeInTheDocument();
-        expect(screen.getByText('url/1/')).toBeInTheDocument();
-        expect(screen.getByText('pokemon2')).toBeInTheDocument();
-        expect(screen.getByText('url/2/')).toBeInTheDocument();
+        pokemons.forEach(pokemon => {
+            expect(screen.getByText(pokemon.name)).toBeInTheDocument();
+            expect(screen.getByText(pokemon.url)).toBeInTheDocument();
+        });
     });
 })
