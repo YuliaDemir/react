@@ -11,15 +11,9 @@ jest.mock('../components/card-list', () => ({ data }: { data: []}) => (
 ));
 
 beforeEach(()=> {
-    global.fetch = jest.fn(async (input: RequestInfo): Promise<Response> => {
+    global.fetch = jest.fn(async (): Promise<Response> => {
         await new Promise(resolve => setTimeout(resolve, 100));
 
-        if (typeof input === 'string' && input.includes('pikachu')) {
-            return Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve({ name: 'pikachu'}),
-            } as Response);
-        }
         return Promise.resolve({
             ok: true,
             json: () => Promise.resolve({ name: 'pikachu' }),
@@ -31,7 +25,7 @@ afterEach(() => {
     jest.restoreAllMocks();
 });
 
-test('shows loader while searching', async () => {
+test('shows loader while searching and the list after processing the request', async () => {
     render(<App />);
 
     const searchButton = screen.getByTestId('search-button');
