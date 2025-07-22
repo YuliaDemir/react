@@ -1,9 +1,8 @@
-import { Component } from 'react';
-import Card from './card';
-import type { ListProps } from './types/interfaces';
+import { Card } from './';
+import type { Pokemons } from './types/interfaces';
 
-class CardList extends Component<ListProps> {
-  render() {
+export const CardList = (props: { pokemons: Pokemons[]}) => {
+  const { pokemons } = props;
     return (
       <div className="container">
         <header className="header">
@@ -11,7 +10,7 @@ class CardList extends Component<ListProps> {
           <h3>Item Description</h3>
         </header>
         <main className="main">
-          {this.props.data.map((card) => {
+          {pokemons.map((card) => {
             const urlParts = card.url.split('/');
             const id = urlParts[urlParts.length - 2];
 
@@ -24,7 +23,4 @@ class CardList extends Component<ListProps> {
         </main>
       </div>
     );
-  }
 }
-
-export default CardList;

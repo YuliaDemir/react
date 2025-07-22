@@ -1,33 +1,18 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
-interface SearchState {
-  value: string;
+export const Search = (props: { onSearch: (value: string) => Promise<void> }) => {
+  const [ value, setValue ] = useState(localStorage.getItem('query') || '');
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value.trim())}
+      ></input>
+      <button onClick={() => props.onSearch(value)}>
+        Search
+      </button>
+    </div>
+  );
 }
-
-interface SearchProps {
-  value: string;
-  onSearch(query: string): void;
-}
-
-class Search extends Component<SearchProps, SearchState> {
-  state = {
-    value: localStorage.getItem('query') || '',
-  };
-
-  render() {
-    return (
-      <div>
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={(e) => this.setState({ value: e.target.value.trim() })}
-        ></input>
-        <button onClick={() => this.props.onSearch(this.state.value)}>
-          Search
-        </button>
-      </div>
-    );
-  }
-}
-
-export default Search;
