@@ -6,8 +6,8 @@ jest.mock('../components/loader', () => () => <div data-testid="loader">Loading.
 jest.mock('../components/search', () => (props: { value: string; onSearch: (query: string) => void}) => (
     <button onClick={() => props.onSearch('pikachu')} data-testid="search-button">Search</button>
 ));
-jest.mock('../components/card-list', () => ({ data }: { data: []}) => (
-    <div data-testid="card-list">{data.length} cards</div>
+jest.mock('../components/card-list', () => ({ pokemons }: { pokemons: []}) => (
+    <div data-testid="card-list">{pokemons.length} cards</div>
 ));
 
 beforeEach(()=> {

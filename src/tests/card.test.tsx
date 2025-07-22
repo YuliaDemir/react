@@ -1,4 +1,4 @@
-import Card from "../components/card";
+import { Card } from "../components/";
 import { render, screen } from '@testing-library/react'
 
 describe('Card Component', () => {

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import CardList from '../components/card-list';
+import { CardList } from '../components/card-list';
 import type { Pokemons } from '../components/types/interfaces';
 
 describe('Card Component', () => {
@@ -16,7 +16,7 @@ describe('Card Component', () => {
             },
         ];
 
-        render(<CardList data={pokemons}/>);
+        render(<CardList pokemons={pokemons}/>);
 
         pokemons.forEach(pokemon => {
             expect(screen.getByText(pokemon.name)).toBeInTheDocument();
