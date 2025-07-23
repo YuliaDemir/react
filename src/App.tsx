@@ -1,37 +1,42 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
-import Search from './components/search';
-import CardList from './components/card-list';
+import { Search, CardList, Loader } from './components';
 import type { Pokemons } from './components/types/interfaces';
-import Loader from './components/loader';
 
-class App extends Component<
-  Record<string, never>,
-  { data: Pokemons[]; error: Error | null; isLoading: boolean }
-> {
-  state = {
+const LINK = 'https://pokeapi.co/api/v2/pokemon/';
+
+const App = () => {
+
+  const [ state, setState ] = useState<{
+    data: Pokemons[],
+    error: null | Error,
+    isLoading: boolean,
+  }>({
     data: [],
     error: null,
     isLoading: false,
-  };
+  });
 
-  async componentDidMount(): Promise<void> {
-    const previousQuery = localStorage.getItem('query')?.trim();
-    if (previousQuery) {
-      this.handleSearch(previousQuery);
-    } else {
-      const requestedData = await fetch(
-        'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1302'
-      ).then((res) => res.json());
-      this.setState({ data: requestedData.results });
+  useEffect (() => {
+    const wrapAsyncFunc = async () => {
+      const previousQuery = localStorage.getItem('query')?.trim();
+      if (previousQuery) {
+        handleSearch(previousQuery);
+      } else {
+        const requestedData = await fetch(
+          `${LINK}?offset=0&limit=1302`
+        ).then((res) => res.json());
+        setState((prev) => ({ ...prev, data: requestedData.results }));
+      }
     }
-  }
+  wrapAsyncFunc();
+  }, []);
 
-  handleSearch = async (query: string) => {
+  async function handleSearch(query: string) {
     const trimmedQuery = query.trim();
     try {
-      this.setState({ isLoading: true });
-      await fetch(`https://pokeapi.co/api/v2/pokemon/${trimmedQuery}`).then(
+      setState((prev) => ({ ...prev, isLoading: true }));
+      await fetch(`${LINK}${trimmedQuery}`).then(
         (res) => {
           if (!res.ok) {
             throw new Error('Not found!');
@@ -40,40 +45,39 @@ class App extends Component<
         }
       );
 
-      this.setState({
-        data: [
-          {
+      setState((prev) => ({ 
+        ...prev, 
+        data: [{
             name: trimmedQuery,
-            url: `https://pokeapi.co/api/v2/pokemon/${trimmedQuery}`,
-          },
-        ],
+            url: `${LINK}${trimmedQuery}`,
+          },],
         isLoading: false,
-      });
+      }));
       localStorage.setItem('query', trimmedQuery);
     } catch (err) {
-      this.setState({ error: err as Error, isLoading: false });
+      setState((prev) => ({ ...prev, error: err as Error, isLoading: false }));
     }
   };
 
-  render() {
-    if (this.state.error) {
-      throw this.state.error;
+
+    if (state.error) {
+      throw state.error;
     }
     return (
       <>
-        <Search value="" onSearch={this.handleSearch} />
-        {this.state.isLoading ? (
+        <Search onSearch={ handleSearch } />
+        {state.isLoading ? (
           <Loader />
         ) : (
-          <CardList data={this.state.data} />
+          <CardList pokemons={state.data} />
         )}
         <button
-          onClick={() => this.setState({ error: new Error('Test error') })}
+          onClick={() => setState((prev) => ({ ...prev, error: new Error('Test error') }))}
         >
           Throw error
         </button>
       </>
     );
-  }
 }
+
 export default App;
