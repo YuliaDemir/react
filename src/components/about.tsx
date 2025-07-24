@@ -1,10 +1,10 @@
-import { Link } from "react-router"
+import { Link } from 'react-router';
 
 export const About = () => {
-    return (
-        <>
-        <Link to="/">Home</Link>
-        ABOUT
-        </>
-    )
-}
+  return (
+    <>
+      <Link to="/">Home</Link>
+      ABOUT
+    </>
+  );
+};

@@ -5,4 +5,4 @@ export { Search } from './search';
 export { Description } from './description';
 export { Home } from './home';
 export { About } from './about';
-export { Header } from "./header";
+export { Header } from './header';

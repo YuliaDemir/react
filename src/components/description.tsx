@@ -1,10 +1,6 @@
-import { useParams } from "react-router"
+import { useParams } from 'react-router';
 
 export const Description = () => {
-    const { index } = useParams();
-    return (
-        <>
-            DESCRIPTION OF OBJECT {index}
-        </>
-    )
-}
+  const { index } = useParams();
+  return <>DESCRIPTION OF OBJECT {index}</>;
+};
