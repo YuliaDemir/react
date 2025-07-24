@@ -64,7 +64,7 @@ export const Home = () => {
 
   useEffect(() => {
     handleSearch(curLSValue);
-  }, [curLSValue, curPage, handleSearch]);
+  }, [curLSValue, curPage]);
 
   if (state.error) {
     throw state.error;
