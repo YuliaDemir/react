@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 import { CardList, Loader, Header } from './';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { Pokemons } from './types/interfaces';
 import { useLocalStorage, usePagination } from './helpers';
 localStorage.clear();
@@ -23,41 +23,48 @@ export const Home = () => {
   const [curLSValue, setLSValue] = useLocalStorage();
   const [curPage, curPagination, setPage] = usePagination();
 
+  const handleSearch = useCallback(
+    async (query: string) => {
+      const newQuery = query ? query + '/' : curPagination;
+      try {
+        setState((prev) => ({ ...prev, isLoading: true }));
+        const requestedData = await fetch(`${LINK}${newQuery}`).then((res) => {
+          if (!res.ok) {
+            throw new Error('Not found!');
+          }
+          return res.json();
+        });
+
+        let result = requestedData.results;
+
+        if (query.trim()) {
+          setLSValue(query);
+          result = [
+            {
+              name: curLSValue,
+              url: `${LINK}${curLSValue}`,
+            },
+          ];
+        }
+        setState(() => ({
+          error: null,
+          data: result, //requestedData.results,
+          isLoading: false,
+        }));
+      } catch (err) {
+        setState((prev) => ({
+          ...prev,
+          error: err as Error,
+          isLoading: false,
+        }));
+      }
+    },
+    [curLSValue, setLSValue, setState, curPagination]
+  );
+
   useEffect(() => {
     handleSearch(curLSValue);
-  }, [curLSValue, curPage]);
-
-  async function handleSearch(query: string) {
-    const newQuery = query ? query + '/' : curPagination;
-    try {
-      setState((prev) => ({ ...prev, isLoading: true }));
-      const requestedData = await fetch(`${LINK}${newQuery}`).then((res) => {
-        if (!res.ok) {
-          throw new Error('Not found!');
-        }
-        return res.json();
-      });
-
-      let result = requestedData.results;
-
-      if (query.trim()) {
-        setLSValue(query);
-        result = [
-          {
-            name: curLSValue,
-            url: `${LINK}${curLSValue}`,
-          },
-        ];
-      }
-      setState(() => ({
-        error: null,
-        data: result, //requestedData.results,
-        isLoading: false,
-      }));
-    } catch (err) {
-      setState((prev) => ({ ...prev, error: err as Error, isLoading: false }));
-    }
-  }
+  }, [curLSValue, curPage, handleSearch]);
 
   if (state.error) {
     throw state.error;
