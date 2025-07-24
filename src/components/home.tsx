@@ -1,10 +1,13 @@
-import { Link, Outlet } from "react-router";
-import { CardList, Loader, Search } from "./";
+import { Outlet } from "react-router";
+import { CardList, Loader, Header } from "./";
 import { useEffect, useState } from "react";
 import type { Pokemons } from "./types/interfaces";
 import { useLocalStorage, usePagination } from "./helpers";
+localStorage.clear();
 
 const LINK = 'https://pokeapi.co/api/v2/pokemon/';
+const LIMIT_NUMBER = 20;
+const MAX = 1302;
 
 export const Home = () => {
   const [ state, setState ] = useState<{
@@ -18,13 +21,11 @@ export const Home = () => {
   });
 
   const [curLSValue, setLSValue] = useLocalStorage();
-  const [curPagination] = usePagination();
+  const [curPage, curPagination, setPage] = usePagination();
 
   useEffect (() => {
     handleSearch(curLSValue);
-  }, [curLSValue]);
-
-
+  }, [curLSValue, curPage]);
 
   async function handleSearch(query: string) {
     const newQuery = query ? query + '/' : curPagination;
@@ -62,12 +63,18 @@ export const Home = () => {
     throw state.error;
   }
   
+  function navigate(curPage: number, left: boolean) {
+    const newPage = curPage - (left ? LIMIT_NUMBER : -LIMIT_NUMBER);
+    setPage(newPage);
+  }
+
   return (
     <>
-      <Search onSearch={ handleSearch } />
-      <Link to="/about">About</Link>
+      <Header handleSearch={ handleSearch } />
       {state.isLoading ? (<Loader />) : (<CardList pokemons={[...state.data]} />)}
       <Outlet/>
+      <button onClick={() => navigate(Number(curPage), true)} disabled={Number(curPage) <= 0}>Left</button>
+      <button onClick={() => navigate(Number(curPage), false)} disabled={Number(curPage) > MAX - LIMIT_NUMBER}>Right</button>
     </>
   );
 }
