@@ -5,9 +5,15 @@ export const Header = (props: {
   handleSearch: (query: string) => Promise<void>;
 }) => {
   return (
-    <>
+    <div className="flex justify-between items-center mb-4">
+      <div className="w-32" />
       <Search onSearch={props.handleSearch} />
-      <Link to="/about">About</Link>
-    </>
+      <Link
+        to="/about"
+        className="text-blue-500 hover:underline font-medium w-32 text-right"
+      >
+        About
+      </Link>
+    </div>
   );
 };

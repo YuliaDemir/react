@@ -75,8 +75,8 @@ export const Home = () => {
     <div className="p-4 max-w-screen-md mx-auto">
       <Header handleSearch={handleSearch} />
       {state.isLoading ? (
-        <Loader /> 
-      ): (
+        <Loader />
+      ) : (
         <div className={`flex transition-all duration-300`}>
           <div
             className={`transition-all duration-300 ${
@@ -86,7 +86,7 @@ export const Home = () => {
             <CardList pokemons={[...state.data]} />
           </div>
           {location.pathname !== '/' && (
-            <div className='w-1/3 min-h-[80h] border-l pl-4'>
+            <div className="w-1/3 min-h-[80h] border-l pl-4">
               <Outlet />
             </div>
           )}
