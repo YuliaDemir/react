@@ -2,10 +2,8 @@ import { Outlet } from 'react-router';
 import { CardList, Loader, Header } from './';
 import { useCallback, useEffect, useState } from 'react';
 import type { Pokemons } from './types/interfaces';
-import { useLocalStorage, usePagination, LIMIT_NUMBER } from './helpers';
-
-const LINK = 'https://pokeapi.co/api/v2/pokemon/';
-const MAX = 1302;
+import { useLocalStorage, usePagination } from './helpers';
+import { LIMIT_NUMBER, MAX, LINK } from './helpers/consts';
 
 export const Home = () => {
   const [state, setState] = useState<{
@@ -76,8 +74,24 @@ export const Home = () => {
   return (
     <div className="p-4 max-w-screen-md mx-auto">
       <Header handleSearch={handleSearch} />
-      {state.isLoading ? <Loader /> : <CardList pokemons={[...state.data]} />}
-      <Outlet />
+      {state.isLoading ? (
+        <Loader /> 
+      ): (
+        <div className={`flex transition-all duration-300`}>
+          <div
+            className={`transition-all duration-300 ${
+              location.pathname !== '/' ? 'w-2/3' : 'w-full'
+            }`}
+          >
+            <CardList pokemons={[...state.data]} />
+          </div>
+          {location.pathname !== '/' && (
+            <div className='w-1/3 min-h-[80h] border-l pl-4'>
+              <Outlet />
+            </div>
+          )}
+        </div>
+      )}
       <div className="flex justify-center gap-4 mt-6">
         <button
           className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-2xl disabled:opacity-50"
