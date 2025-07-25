@@ -20,11 +20,12 @@ export const Card = ({
   }, [description]);
 
   return (
-    <div className="card-row">
-      <Link to={`/${name}`} className="card-name">
-        {name}
-      </Link>
-      <img src={imgUrl} />
-    </div>
+    <Link
+      to={`/${name}`}
+      className="flex items-center justify-between border rounded-lg px-4 py-1 shadow hover:shadow-md transition"
+    >
+      <span className="text-lg font-semibold text-blue-500">{name}</span>
+      <img src={imgUrl} alt={name} className="w-20 h-20 object-contain" />
+    </Link>
   );
 };
