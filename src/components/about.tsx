@@ -5,7 +5,10 @@ export const About = () => {
     <div className="max-w-2xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">About</h1>
       <p className="=mb-2 text-lg">
-        Created by <span className="font-semibold">Yulia Demir</span>.
+        Created by <span className="font-semibold">Yulia Demir</span>. Родилась
+        в семье плотника и доярки. Люблю шпаклевать. По выходным занимаюсь
+        шпалоукладываением. Коплю на ламборджини, но боюсь опять сорвусь и куплю
+        сникерс и жвачку.
       </p>
       <p className="mb-4 text-lg">
         This app was developed as part of the{' '}
