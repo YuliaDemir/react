@@ -1,14 +1,14 @@
 import { useSearchParams } from 'react-router';
 
+export const OFFSET_KEY = 'offset';
+export const LIMIT_KEY = 'limit';
+export const LIMIT_NUMBER = 10;
+
 export function usePagination(): [
   curPage: string,
   curPagenationQwery: string,
   setPage: (page: number) => void,
 ] {
-  const OFFSET_KEY = 'offset';
-  const LIMIT_KEY = 'limit';
-  const LIMIT_NUMBER = 20;
-
   const [searchParam, setSearchParam] = useSearchParams();
   const curPage = searchParam.get(OFFSET_KEY) || '0';
   const curPagenationQwery = `?${OFFSET_KEY}=${curPage}&${LIMIT_KEY}=${LIMIT_NUMBER}`;
