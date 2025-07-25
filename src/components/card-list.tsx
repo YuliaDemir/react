@@ -5,7 +5,7 @@ export const CardList = (props: { pokemons: Pokemons[] }) => {
   const { pokemons } = props;
   return (
     <div className="max-w-screen-lg mx-auto p-4">
-      <header className="flex justify-between mb-4 border-b pb-2">
+      <header className="flex justify-between px-15 mb-4 border-b pb-2">
         <h3 className="font-semibold text-lg">Pokemon's name</h3>
         <h3 className="font-semibold text-lg">Pokemon's image</h3>
       </header>

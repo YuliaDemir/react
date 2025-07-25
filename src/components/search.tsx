@@ -6,13 +6,19 @@ export const Search = (props: {
   const [value, setValue] = useState(localStorage.getItem('query') || '');
 
   return (
-    <div>
+    <div className="flex gap-2 items-center mb-4">
       <input
         type="text"
+        className="border rounded px-3 py-2 w-full max-w-xs"
         value={value}
         onChange={(e) => setValue(e.target.value.trim())}
       ></input>
-      <button onClick={() => props.onSearch(value)}>Search</button>
+      <button
+        className="bg-blue-100 text-blue-600 px-4 py-2 rounded-2xl hover:bg-blue-300 transition"
+        onClick={() => props.onSearch(value)}
+      >
+        Search
+      </button>
     </div>
   );
 };

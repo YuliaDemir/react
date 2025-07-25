@@ -2,11 +2,9 @@ import { Outlet } from 'react-router';
 import { CardList, Loader, Header } from './';
 import { useCallback, useEffect, useState } from 'react';
 import type { Pokemons } from './types/interfaces';
-import { useLocalStorage, usePagination } from './helpers';
-localStorage.clear();
+import { useLocalStorage, usePagination, LIMIT_NUMBER } from './helpers';
 
 const LINK = 'https://pokeapi.co/api/v2/pokemon/';
-const LIMIT_NUMBER = 20;
 const MAX = 1302;
 
 export const Home = () => {
@@ -76,22 +74,26 @@ export const Home = () => {
   }
 
   return (
-    <>
+    <div className="p-4 max-w-screen-md mx-auto">
       <Header handleSearch={handleSearch} />
       {state.isLoading ? <Loader /> : <CardList pokemons={[...state.data]} />}
       <Outlet />
-      <button
-        onClick={() => navigate(Number(curPage), true)}
-        disabled={Number(curPage) <= 0}
-      >
-        Left
-      </button>
-      <button
-        onClick={() => navigate(Number(curPage), false)}
-        disabled={Number(curPage) > MAX - LIMIT_NUMBER}
-      >
-        Right
-      </button>
-    </>
+      <div className="flex justify-center gap-4 mt-6">
+        <button
+          className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-2xl disabled:opacity-50"
+          onClick={() => navigate(Number(curPage), true)}
+          disabled={Number(curPage) <= 0}
+        >
+          Left
+        </button>
+        <button
+          className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded-2xl disabled:opacity-50"
+          onClick={() => navigate(Number(curPage), false)}
+          disabled={Number(curPage) > MAX - LIMIT_NUMBER}
+        >
+          Right
+        </button>
+      </div>
+    </div>
   );
 };

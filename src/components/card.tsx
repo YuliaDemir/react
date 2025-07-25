@@ -22,7 +22,7 @@ export const Card = ({
   return (
     <Link
       to={`/${name}`}
-      className="flex items-center justify-between border rounded-lg px-4 py-1 shadow hover:shadow-md transition"
+      className="flex items-center justify-between border rounded-lg px-20 py-1 shadow hover:shadow-md transition hover:bg-blue-100"
     >
       <span className="text-lg font-semibold text-blue-500">{name}</span>
       <img src={imgUrl} alt={name} className="w-20 h-20 object-contain" />
