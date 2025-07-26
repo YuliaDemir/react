@@ -1,5 +1,6 @@
 import { Home, Description, About } from './components';
 import { Route, Routes } from 'react-router';
+import { NotFound } from './components/404';
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
         <Route path="/:index" element={<Description />} />
       </Route>
       <Route path="/about" element={<About />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
