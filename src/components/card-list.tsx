@@ -3,6 +3,7 @@ import type { Pokemons } from './types/interfaces';
 
 export const CardList = (props: { pokemons: Pokemons[] }) => {
   const { pokemons } = props;
+
   return (
     <div className="max-w-screen-lg mx-auto p-4">
       <header className="flex justify-between px-15 mb-4 border-b pb-2">

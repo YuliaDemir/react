@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import { usePagination } from './helpers';
 
 export const Card = ({
   name,
@@ -9,6 +10,7 @@ export const Card = ({
   description: string;
 }) => {
   const [imgUrl, setImgUrl] = useState<string | undefined>(undefined);
+  const [, currPaginationQuery] = usePagination();
 
   useEffect(() => {
     (async () => {
@@ -21,7 +23,7 @@ export const Card = ({
 
   return (
     <Link
-      to={`/${name}`}
+      to={`/${name}${currPaginationQuery}`}
       className="flex items-center justify-between border rounded-lg px-20 py-1 shadow hover:shadow-md transition hover:bg-blue-100"
     >
       <span className="text-lg font-semibold text-blue-500">{name}</span>

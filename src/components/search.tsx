@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useLocalStorage } from './helpers';
 
 export const Search = (props: {
   onSearch: (value: string) => Promise<void>;
 }) => {
-  const [value, setValue] = useState(localStorage.getItem('query') || '');
+  const [LSvalue] = useLocalStorage();
+  const [value, setValue] = useState(() => LSvalue || '');
 
   return (
     <div className="flex gap-2 items-center mb-4">

@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { LINK } from './helpers/consts';
 import { useEffect, useRef, useState } from 'react';
 import { Loader } from './loader';
+import { usePagination } from './helpers';
 
 interface AbilityItem {
   ability: {
@@ -22,11 +23,12 @@ function findAbilityDescriptionEn(
 export const Description = () => {
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const [, currPaginationQuery] = usePagination();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        navigate('/');
+        navigate('/' + currPaginationQuery);
       }
     }
 
@@ -73,7 +75,7 @@ export const Description = () => {
       className="relative bg-white shadow-lg rounded-2xl p-6 w-full max-w-md mx-auto mt-4"
     >
       <Link
-        to="/"
+        to={'/' + currPaginationQuery}
         className="absolute top-2 right-2 text-gray-700 hover:text-red-600 transition"
         aria-label="Close"
       >

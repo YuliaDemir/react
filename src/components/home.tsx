@@ -16,12 +16,14 @@ export const Home = () => {
     isLoading: false,
   });
 
+  const [curSearchValue, setSearchValue] = useState('');
   const [curLSValue, setLSValue] = useLocalStorage();
   const [curPage, curPagination, setPage] = usePagination();
 
   const handleSearch = useCallback(
     async (query: string) => {
       const newQuery = query ? query + '/' : curPagination;
+
       try {
         setState((prev) => ({ ...prev, isLoading: true }));
         const requestedData = await fetch(`${LINK}${newQuery}`).then((res) => {
@@ -37,8 +39,8 @@ export const Home = () => {
           setLSValue(query);
           result = [
             {
-              name: curLSValue,
-              url: `${LINK}${curLSValue}`,
+              name: query,
+              url: `${LINK}${query}`,
             },
           ];
         }
@@ -55,12 +57,18 @@ export const Home = () => {
         }));
       }
     },
-    [curLSValue, setLSValue, setState, curPagination]
+    [curSearchValue, setSearchValue, setState, curPagination]
   );
 
   useEffect(() => {
-    handleSearch(curLSValue);
-  }, [curLSValue, curPage]);
+    if (curLSValue) {
+      handleSearch(curLSValue);
+    }
+  }, []);
+
+  useEffect(() => {
+    handleSearch(curSearchValue);
+  }, [curSearchValue, curPage]);
 
   if (state.error) {
     throw state.error;
