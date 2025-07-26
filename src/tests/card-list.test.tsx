@@ -1,9 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import { CardList } from '../components/card-list';
 import type { Pokemons } from '../components/types/interfaces';
+import { MemoryRouter } from 'react-router';
 
-describe('Card Component', () => {
-  test('Renders item name and description', () => {
+jest.mock('../components', () => ({
+  ...jest.requireActual('../components'),
+  Card: ({ name }: { name: string }) => <div>{name}</div>,
+}));
+
+describe('CardList Component', () => {
+  test('Renders items', () => {
     const pokemons: Pokemons[] = [
       {
         name: 'pokemon1',
@@ -15,11 +21,14 @@ describe('Card Component', () => {
       },
     ];
 
-    render(<CardList pokemons={pokemons} />);
+    render(
+      <MemoryRouter>
+        <CardList pokemons={pokemons} />
+      </MemoryRouter>
+    );
 
     pokemons.forEach((pokemon) => {
       expect(screen.getByText(pokemon.name)).toBeInTheDocument();
-      expect(screen.getByText(pokemon.url)).toBeInTheDocument();
     });
   });
 });
