@@ -10,7 +10,7 @@
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "format:fix": "prettier --write .",
-    "prepare": "install husky",
+    "prepare": "husky install",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
