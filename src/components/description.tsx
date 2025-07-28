@@ -1,8 +1,9 @@
-import { Link, useNavigate, useParams } from 'react-router';
-import { LINK } from './helpers/consts';
 import { useEffect, useRef, useState } from 'react';
-import { Loader } from './loader';
+import { Link, useNavigate, useParams } from 'react-router';
+
 import { usePagination } from './helpers';
+import { LINK } from './helpers/consts';
+import { Loader } from './loader';
 
 interface AbilityItem {
   ability: {

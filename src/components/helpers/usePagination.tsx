@@ -1,4 +1,5 @@
 import { useSearchParams } from 'react-router';
+
 import { OFFSET_KEY, LIMIT_KEY, LIMIT_NUMBER } from './consts';
 
 export function usePagination(): [

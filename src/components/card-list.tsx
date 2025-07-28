@@ -1,4 +1,5 @@
 import { Card } from './';
+
 import type { Pokemons } from './types/interfaces';
 
 export const CardList = (props: { pokemons: Pokemons[] }) => {

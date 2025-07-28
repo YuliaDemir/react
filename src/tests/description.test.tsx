@@ -1,6 +1,7 @@
-import { MemoryRouter } from 'react-router';
-import { Description } from '../components';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+
+import { Description } from '../components';
 
 global.fetch = jest.fn();
 

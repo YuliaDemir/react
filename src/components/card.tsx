@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+
 import { usePagination } from './helpers';
 
 export const Card = ({

@@ -1,9 +1,11 @@
-import { Outlet } from 'react-router';
-import { CardList, Loader, Header } from './';
 import { useCallback, useEffect, useState } from 'react';
-import type { Pokemons } from './types/interfaces';
+import { Outlet } from 'react-router';
+
+import { CardList, Loader, Header } from './';
 import { useLocalStorage, usePagination } from './helpers';
 import { LIMIT_NUMBER, MAX, LINK } from './helpers/consts';
+
+import type { Pokemons } from './types/interfaces';
 
 export const Home = () => {
   const [state, setState] = useState<{

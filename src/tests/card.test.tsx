@@ -1,6 +1,7 @@
-import { MemoryRouter } from 'react-router';
-import { Card } from '../components/';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+
+import { Card } from '../components/';
 
 describe('Card Component', () => {
   beforeEach(() => {
