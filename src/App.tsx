@@ -1,17 +1,9 @@
-import { Home, Description, About } from './components';
-import { Route, Routes } from 'react-router';
-import { NotFound } from './components/404';
+import { useRoutes } from 'react-router';
+import { routes } from './routes';
 
 const App = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />}>
-        <Route path="/:index" element={<Description />} />
-      </Route>
-      <Route path="/about" element={<About />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
+  const paths = useRoutes(routes);
+  return paths;
 };
 
 export default App;
