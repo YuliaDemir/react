@@ -23,7 +23,7 @@ describe('Card Component', () => {
 
     render(
       <MemoryRouter>
-        <Card name="pikachu" description="yellow" />
+        <Card name="pikachu" description="yellow" mainCard />
       </MemoryRouter>
     );
     expect(screen.getByText('pikachu')).toBeInTheDocument();
