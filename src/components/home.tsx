@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 
-import { CardList, Loader, Header } from './';
+import { CardList, Loader, Header, Selected } from './';
 import { useLocalStorage, usePagination } from './helpers';
 import { LIMIT_NUMBER, MAX, LINK } from './helpers/consts';
 
@@ -82,21 +82,24 @@ export const Home = () => {
   }
 
   return (
-    <div className="p-4 max-w-screen-md mx-auto">
+    <div className="p-4 max-w-screen-mdlg mx-auto">
       <Header handleSearch={handleSearch} />
       {state.isLoading ? (
         <Loader />
       ) : (
         <div className={`flex transition-all duration-300`}>
+          <div className="w=1/4 pr-4">
+            <Selected />
+          </div>
           <div
             className={`transition-all duration-300 ${
-              location.pathname !== '/' ? 'w-2/3' : 'w-full'
+              location.pathname !== '/' ? 'w-1/2' : 'w-full'
             }`}
           >
             <CardList pokemons={[...state.data]} />
           </div>
           {location.pathname !== '/' && (
-            <div className="w-1/3 min-h-[80h] border-l pl-4">
+            <div className="w-1/4 min-h-[80h] border-l pl-4">
               <Outlet />
             </div>
           )}

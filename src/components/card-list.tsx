@@ -18,7 +18,7 @@ export const CardList = (props: { pokemons: Pokemons[] }) => {
 
           return (
             <div key={id}>
-              <Card name={card.name} description={card.url} />
+              <Card name={card.name} description={card.url} mainCard />
             </div>
           );
         })}
