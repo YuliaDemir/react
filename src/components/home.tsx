@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 
 import { CardList, Loader, Header, Selected } from './';
+import { Flyout } from './flyout';
 import { useLocalStorage, usePagination } from './helpers';
 import { LIMIT_NUMBER, MAX, LINK } from './helpers/consts';
 
@@ -121,6 +122,7 @@ export const Home = () => {
           Right
         </button>
       </div>
+      <Flyout />
     </div>
   );
 };
