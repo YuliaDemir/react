@@ -15,7 +15,7 @@ export const CardList = (props: { pokemons: Pokemons[] }) => {
           Pokemon's image
         </h3>
       </header>
-      <main className="grid grid-cols-1 gap-4 max-h-[55vh] overflow-auto">
+      <main className="grid grid-cols-1 gap-4 max-h-96 overflow-auto">
         {pokemons.map((card) => {
           const urlParts = card.url.split('/');
           const id = urlParts[urlParts.length - 2];

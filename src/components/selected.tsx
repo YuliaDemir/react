@@ -11,7 +11,7 @@ export const Selected = () => {
       <header className="px-15 mb-4 border-b pb-2 dark:border-blue-300 ">
         <h3 className="font-semibold text-lg dark:text-blue-600">Selected</h3>
       </header>
-      <main className="grid grid-cols-1 gap-4 max-h-[55vh] overflow-auto">
+      <main className="grid grid-cols-1 gap-4 max-h-96 overflow-auto">
         {selectedPokemons.map((card) => {
           const urlParts = card.url.split('/');
           const id = urlParts[urlParts.length - 2];

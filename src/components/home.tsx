@@ -99,7 +99,7 @@ export const Home = () => {
             <CardList pokemons={[...state.data]} />
           </div>
           {location.pathname !== '/' && (
-            <div className="w-1/4 min-h-[80h] border-l pl-4">
+            <div className="w-1/4 min-h-20 border-l pl-4">
               <Outlet />
             </div>
           )}
