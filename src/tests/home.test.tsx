@@ -24,6 +24,8 @@ jest.mock('../components', () => ({
     </div>
   ),
   Loader: () => <div>Loading...</div>,
+  Selected: () => <div>Selected...</div>,
+  Flyout: () => <div>Flyout...</div>,
 }));
 
 describe('Home component', () => {

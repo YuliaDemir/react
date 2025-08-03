@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 
-import { CardList, Loader, Header, Selected } from './';
-import { Flyout } from './flyout';
+import { CardList, Loader, Header, Selected, Flyout } from './';
 import { useLocalStorage, usePagination } from './helpers';
 import { LIMIT_NUMBER, MAX, LINK } from './helpers/consts';
 
