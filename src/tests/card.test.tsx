@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
 
 import { Card } from '../components/';
+import { store } from '../components/store';
 
 describe('Card Component', () => {
   beforeEach(() => {
@@ -22,9 +24,11 @@ describe('Card Component', () => {
       );
 
     render(
-      <MemoryRouter>
-        <Card name="pikachu" description="yellow" mainCard />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Card name="pikachu" description="yellow" mainCard />
+        </MemoryRouter>
+      </Provider>
     );
     expect(screen.getByText('pikachu')).toBeInTheDocument();
   });
