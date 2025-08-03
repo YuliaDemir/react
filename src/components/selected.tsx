@@ -8,8 +8,8 @@ export const Selected = () => {
   const selectedPokemons = useSelector((state: RootState) => state.selected);
   return (
     <div className="max-w-screen-lg mx-auto p-4">
-      <header className="px-15 mb-4 border-b pb-2">
-        <h3 className="font-semibold text-lg">Selected</h3>
+      <header className="px-15 mb-4 border-b pb-2 dark:border-blue-300 ">
+        <h3 className="font-semibold text-lg dark:text-blue-600">Selected</h3>
       </header>
       <main className="grid grid-cols-1 gap-4">
         {selectedPokemons.map((card) => {

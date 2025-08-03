@@ -12,7 +12,7 @@ export const Search = (props: {
     <div className="flex gap-2 items-center mb-4">
       <input
         type="text"
-        className="border rounded-2xl px-3 py-2 w-98"
+        className="border rounded-2xl px-3 py-2 w-98 dark:border-blue-300 dark:text-blue-600"
         value={value}
         onChange={(e) => setValue(e.target.value.trim())}
       ></input>

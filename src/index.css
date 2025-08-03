@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --breakpoint-mdlg: 1100px;
+}
+
+.dark body{
+    background-color: hsl(237, 100%, 21%);
+    color: hsl(215, 89%, 62%);
 }

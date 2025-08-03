@@ -73,7 +73,7 @@ export const Description = () => {
   return (
     <div
       ref={ref}
-      className="relative bg-white shadow-lg rounded-2xl p-6 w-full max-w-md mx-auto mt-4"
+      className="relative bg-white dark:bg-blue-200 shadow-lg rounded-2xl p-6 w-full max-w-md mx-auto mt-4"
     >
       <Link
         to={'/' + currPaginationQuery}

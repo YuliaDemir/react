@@ -44,7 +44,7 @@ export const Card = ({
   return (
     <Link
       to={`/${name}${currPaginationQuery}`}
-      className={`flex items-center justify-between border rounded-lg ${!mainCard ? 'px-5' : 'px-20'} py-1 shadow hover:shadow-md transition hover:bg-blue-100`}
+      className={`flex items-center justify-between border dark:border-blue-300 rounded-lg ${!mainCard ? 'px-5' : 'px-20'} py-1 shadow hover:shadow-md transition hover:bg-blue-100`}
     >
       <input
         type="checkbox"

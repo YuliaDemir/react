@@ -7,9 +7,13 @@ export const CardList = (props: { pokemons: Pokemons[] }) => {
 
   return (
     <div className="max-w-screen-lg mx-auto p-4">
-      <header className="flex justify-between px-15 mb-4 border-b pb-2">
-        <h3 className="font-semibold text-lg">Pokemon's name</h3>
-        <h3 className="font-semibold text-lg">Pokemon's image</h3>
+      <header className="flex justify-between px-15 mb-4 border-b pb-2 dark:border-blue-300">
+        <h3 className="font-semibold text-lg dark:text-blue-600">
+          Pokemon's name
+        </h3>
+        <h3 className="font-semibold text-lg dark:text-blue-600">
+          Pokemon's image
+        </h3>
       </header>
       <main className="grid grid-cols-1 gap-4">
         {pokemons.map((card) => {
