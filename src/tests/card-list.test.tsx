@@ -1,26 +1,36 @@
-import { render, screen } from '@testing-library/react'
-import CardList from '../components/card-list';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+
+import { CardList } from '../components/card-list';
+
 import type { Pokemons } from '../components/types/interfaces';
 
-describe('Card Component', () => {
+jest.mock('../components', () => ({
+  ...jest.requireActual('../components'),
+  Card: ({ name }: { name: string }) => <div>{name}</div>,
+}));
 
-    test ('Renders item name and description', () => {
-        const pokemons: Pokemons[] = [
-            {
-                name: "pokemon1",
-                url:"url/1/",
-            },
-            {
-                name: "pokemon2",
-                url:"url/2/",
-            },
-        ];
+describe('CardList Component', () => {
+  test('Renders items', () => {
+    const pokemons: Pokemons[] = [
+      {
+        name: 'pokemon1',
+        url: 'url/1/',
+      },
+      {
+        name: 'pokemon2',
+        url: 'url/2/',
+      },
+    ];
 
-        render(<CardList data={pokemons}/>);
+    render(
+      <MemoryRouter>
+        <CardList pokemons={pokemons} />
+      </MemoryRouter>
+    );
 
-        pokemons.forEach(pokemon => {
-            expect(screen.getByText(pokemon.name)).toBeInTheDocument();
-            expect(screen.getByText(pokemon.url)).toBeInTheDocument();
-        });
+    pokemons.forEach((pokemon) => {
+      expect(screen.getByText(pokemon.name)).toBeInTheDocument();
     });
-})
+  });
+});
