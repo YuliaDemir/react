@@ -26,6 +26,11 @@ export default tseslint.config([
       globals: globals.browser,
     },
     rules: {
+      "no-console": ["error", { allow: ["warn"] }],
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
       'prettier/prettier': [
         'error', {
           "trailingComma": "es5",
@@ -60,6 +65,13 @@ export default tseslint.config([
           },
         },
       ],
+    },
+    
+  },
+  {
+    files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
+    rules: {
+      'no-console': ['error', { allow: ['warn', 'error'] }],
     },
   },
 ]);
