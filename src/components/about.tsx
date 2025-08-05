@@ -4,7 +4,7 @@ export const About = () => {
   return (
     <div className="max-w-2xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">About</h1>
-      <p className="=mb-2 text-lg">
+      <p className="mb-2 text-lg">
         Created by <span className="font-semibold">Yulia Demir</span>. Родилась
         в семье плотника и доярки. Люблю шпаклевать и шпалоукладывание. Да и
         вообще мне нравится сочетание букв шпа. Коплю на ламборджини, но боюсь

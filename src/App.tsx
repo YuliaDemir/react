@@ -3,8 +3,7 @@ import { useRoutes } from 'react-router';
 import { routes } from './routes';
 
 const App = () => {
-  const paths = useRoutes(routes);
-  return paths;
+  return useRoutes(routes);
 };
 
 export default App;

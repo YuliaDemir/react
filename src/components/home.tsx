@@ -88,7 +88,7 @@ export const Home = () => {
         <Loader />
       ) : (
         <div className={`flex transition-all duration-300`}>
-          <div className="w=1/4 pr-4">
+          <div className="w-1/4 pr-4">
             <Selected />
           </div>
           <div
