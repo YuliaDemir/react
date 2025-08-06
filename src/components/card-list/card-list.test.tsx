@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 
+import type { Pokemons } from '@/types';
+
 import { CardList } from './card-list';
 
-import type { Pokemons } from '../../types';
-
-jest.mock('../components', () => ({
-  ...jest.requireActual('../components'),
+jest.mock('@components', () => ({
+  ...jest.requireActual('@components'),
   Card: ({ name }: { name: string }) => <div>{name}</div>,
 }));
 

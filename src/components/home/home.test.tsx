@@ -1,18 +1,18 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 
-import { Home } from './home';
+import type { Pokemons } from '@/types';
 
-import type { Pokemons } from '../../types';
+import { Home } from './home';
 
 global.fetch = jest.fn();
 
-jest.mock('../components/helpers', () => ({
+jest.mock('@components/helpers', () => ({
   useLocalStorage: () => ['', jest.fn()],
   usePagination: () => [0, '', jest.fn()],
 }));
 
-jest.mock('../components', () => ({
+jest.mock('@components', () => ({
   Header: ({ handleSearch }: { handleSearch: (query: string) => void }) => (
     <button onClick={() => handleSearch('pikachu')}>Search Button</button>
   ),
