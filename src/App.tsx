@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router';
 
-import { routes } from './routes';
+import { routes } from './shared/routes.tsx';
 
 const App = () => {
   const paths = useRoutes(routes);

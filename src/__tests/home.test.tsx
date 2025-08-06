@@ -1,13 +1,13 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 
-import { Home } from '../components/home';
+import { Home } from '../pages/home.tsx';
 
-import type { Pokemons } from '../components/types/interfaces';
+import type { Pokemons } from '../shared/types/interfaces.tsx';
 
 global.fetch = jest.fn();
 
-jest.mock('../components/helpers', () => ({
+jest.mock('../shared/helpers', () => ({
   useLocalStorage: () => ['', jest.fn()],
   usePagination: () => [0, '', jest.fn()],
 }));

@@ -1,6 +1,6 @@
-import { downloadSelectedItems } from '../components/helpers';
+import { downloadSelectedItems } from '../shared/helpers';
 
-import type { Pokemons } from '../components/types/interfaces';
+import type { Pokemons } from '../shared/types/interfaces.tsx';
 
 describe('downloadSelectedItems', () => {
   const clickMock = jest.fn();

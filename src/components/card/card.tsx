@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 
-import { usePagination } from './helpers';
-import { addPokemon, deletePokemon } from './slices/selected-slice';
+import { usePagination } from '../../shared/helpers';
+import { addPokemon, deletePokemon } from '../../shared/state/slices/selected-slice.ts';
 
-import type { RootState } from './store';
-import type { Pokemons } from './types/interfaces';
+import type { RootState } from '../store.ts';
+import type { Pokemons } from '../../shared/types/interfaces.tsx';
 
 export const Card = ({
   name,

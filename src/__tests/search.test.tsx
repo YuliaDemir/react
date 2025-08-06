@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import { Search } from '../components/search';
+import { Search } from '../components/search/search.tsx';
 
 describe('Search Component', () => {
   beforeEach(() => {

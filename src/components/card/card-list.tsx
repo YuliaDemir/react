@@ -1,6 +1,6 @@
-import { Card } from './';
+import { Card } from '../index.tsx';
 
-import type { Pokemons } from './types/interfaces';
+import type { Pokemons } from '../../shared/types/interfaces.tsx';
 
 export const CardList = (props: { pokemons: Pokemons[] }) => {
   const { pokemons } = props;

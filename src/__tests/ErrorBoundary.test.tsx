@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Component } from 'react';
 
-import ErrorBoundary from '../ErrorBoundary';
+import ErrorBoundary from '../components/ErrorBoundary.tsx';
 
 class ProblematicComponent extends Component {
   render() {

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { clearSelected, downloadSelected } from './slices/selected-slice';
+import { clearSelected, downloadSelected } from '../shared/state/slices/selected-slice';
 
 import type { RootState } from './store';
 

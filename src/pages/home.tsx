@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 
-import { CardList, Loader, Header, Selected, Flyout } from './';
-import { useLocalStorage, usePagination } from './helpers';
-import { LIMIT_NUMBER, MAX, LINK } from './helpers/consts';
+import { CardList, Loader, Header, Selected, Flyout } from '../components';
+import { useLocalStorage, usePagination } from '../shared/helpers';
+import { LIMIT_NUMBER, MAX, LINK } from '../shared/helpers/consts.tsx';
 
-import type { Pokemons } from './types/interfaces';
+import type { Pokemons } from '../shared/types/interfaces.tsx';
 
 export const Home = () => {
   const [state, setState] = useState<{

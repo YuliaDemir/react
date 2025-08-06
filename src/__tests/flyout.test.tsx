@@ -2,13 +2,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
-import { Flyout } from '../components/flyout';
+import { Flyout } from '../components/flyout.tsx';
 import {
   clearSelected,
   downloadSelected,
-} from '../components/slices/selected-slice';
+} from '../shared/state/slices/selected-slice.ts';
 
-jest.mock('../components/slices/selected-slice', () => ({
+jest.mock('../shared/state/slices/selected-slice.ts', () => ({
   clearSelected: jest.fn(() => ({ type: 'CLEAR_SELECTED' })),
   downloadSelected: jest.fn(() => ({ type: 'DOWNLOAD_SELECTED' })),
 }));

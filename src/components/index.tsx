@@ -1,11 +1,11 @@
-export { Card } from './card';
-export { CardList } from './card-list';
+export { Card } from './card/card.tsx';
+export { CardList } from './card/card-list.tsx';
 export { Loader } from './loader';
-export { Search } from './search';
+export { Search } from './search/search.tsx';
 export { Description } from './description';
-export { Home } from './home';
-export { About } from './about';
+export { Home } from '../pages/home.tsx';
+export { About } from '../pages/about.tsx';
 export { Header } from './header';
-export { NotFound } from './404';
+export { NotFound } from '../pages/not-found.tsx';
 export { Selected } from './selected';
 export { Flyout } from './flyout';
