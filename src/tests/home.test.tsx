@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router';
 
 import { Home } from '../components/home';
 
-import type { Pokemons } from '../components/types/interfaces';
+import type { Pokemons } from '../types';
 
 global.fetch = jest.fn();
 

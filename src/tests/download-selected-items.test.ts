@@ -1,6 +1,6 @@
 import { downloadSelectedItems } from '../components/helpers';
 
-import type { Pokemons } from '../components/types/interfaces';
+import type { Pokemons } from '../types';
 
 describe('downloadSelectedItems', () => {
   const clickMock = jest.fn();

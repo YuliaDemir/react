@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import { downloadSelectedItems } from '../helpers/download-selected-items';
 
-import type { Pokemons } from '../types/interfaces';
+import type { Pokemons } from '../../types';
 
 const selectedSlice = createSlice({
   name: 'selectedItems',

@@ -6,7 +6,7 @@ import { usePagination } from './helpers';
 import { addPokemon, deletePokemon } from './slices/selected-slice';
 
 import type { RootState } from './store';
-import type { Pokemons } from './types/interfaces';
+import type { Pokemons } from '../types';
 
 export const Card = ({
   name,

@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router';
 
 import { CardList } from '../components/card-list';
 
-import type { Pokemons } from '../components/types/interfaces';
+import type { Pokemons } from '../types';
 
 jest.mock('../components', () => ({
   ...jest.requireActual('../components'),

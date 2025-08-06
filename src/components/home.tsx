@@ -5,7 +5,7 @@ import { CardList, Loader, Header, Selected, Flyout } from './';
 import { useLocalStorage, usePagination } from './helpers';
 import { LIMIT_NUMBER, MAX, LINK } from './helpers/consts';
 
-import type { Pokemons } from './types/interfaces';
+import type { Pokemons } from '../types';
 
 export const Home = () => {
   const [state, setState] = useState<{
