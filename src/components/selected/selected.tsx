@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import { Card } from './card';
+import { Card } from '../';
 
-import type { RootState } from './store';
+import type { RootState } from '../../app/store';
 
 export const Selected = () => {
   const selectedPokemons = useSelector((state: RootState) => state.selected);

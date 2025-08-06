@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useLocalStorage } from '../hooks';
+import { useLocalStorage } from '../../hooks';
 
 export const Search = (props: {
   onSearch: (value: string) => Promise<void>;

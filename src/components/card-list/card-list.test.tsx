@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 
-import { CardList } from '../components/card-list';
+import { CardList } from './card-list';
 
-import type { Pokemons } from '../types';
+import type { Pokemons } from '../../types';
 
 jest.mock('../components', () => ({
   ...jest.requireActual('../components'),

@@ -1,6 +1,6 @@
-import { Card } from './';
+import { Card } from '../';
 
-import type { Pokemons } from '../types';
+import type { Pokemons } from '../../types';
 
 export const CardList = (props: { pokemons: Pokemons[] }) => {
   const { pokemons } = props;

@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
 
-import { Card } from '../components/';
-import { store } from '../components/store';
+import { Card } from './card';
+import { store } from '../../app/store';
 
 describe('Card Component', () => {
   beforeEach(() => {

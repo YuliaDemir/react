@@ -1,9 +1,9 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 
-import { Home } from '../components/home';
+import { Home } from './home';
 
-import type { Pokemons } from '../types';
+import type { Pokemons } from '../../types';
 
 global.fetch = jest.fn();
 

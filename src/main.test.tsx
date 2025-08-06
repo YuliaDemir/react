@@ -15,7 +15,7 @@ describe('main.tsx', () => {
     rootElement.id = 'root';
     document.body.appendChild(rootElement);
 
-    await import('../main');
+    await import('./main');
 
     expect(ReactDOM.createRoot).toHaveBeenCalledWith(rootElement);
 

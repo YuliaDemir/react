@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
-import { Search } from './search';
-import { ThemeToggle } from './theme-toggle';
+import { Search } from '../';
+import { ThemeToggle } from '../';
 
 export const Header = (props: {
   handleSearch: (query: string) => Promise<void>;

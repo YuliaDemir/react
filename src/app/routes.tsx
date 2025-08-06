@@ -1,4 +1,4 @@
-import { About, Description, Home, NotFound } from './components';
+import { About, Description, Home, NotFound } from '../components';
 
 export const routes = [
   {

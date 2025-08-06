@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { clearSelected, downloadSelected } from './slices/selected-slice';
+import { clearSelected, downloadSelected } from '../../features/selected-slice';
 
-import type { RootState } from './store';
+import type { RootState } from '../../app/store';
 
 export const Flyout = () => {
   const dispatch = useDispatch();
