@@ -7,7 +7,13 @@ export const CardList = (props: { pokemons: Pokemons[] }) => {
 
   return (
     <div className="max-w-screen-lg mx-auto p-4">
-      <header className="flex justify-between px-15 mb-4 border-b pb-2 dark:border-blue-300">
+      <header
+        className={twMerge(
+          'flex justify-between',
+          'px-15 mb-4',
+          'border-b pb-2 dark:border-blue-300'
+        )}
+      >
         <h3 className="font-semibold text-lg dark:text-blue-600">
           Pokemon's name
         </h3>

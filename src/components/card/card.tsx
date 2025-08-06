@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
+import { twMerge } from 'tailwind-merge';
 
 import type { RootState } from '@/app/store';
 import { addPokemon, deletePokemon } from '@/features/selected-slice';
@@ -43,7 +44,12 @@ export const Card = ({
   return (
     <Link
       to={`/${name}${currPaginationQuery}`}
-      className={`flex items-center justify-between border dark:border-blue-300 rounded-lg ${!mainCard ? 'px-5' : 'px-20'} py-1 shadow hover:shadow-md transition hover:bg-blue-100`}
+      className={twMerge(
+        'flex items-center justify-between',
+        'border dark:border-blue-300 rounded-lg',
+        `${!mainCard ? 'px-5' : 'px-20'} py-1 shadow`,
+        'hover:shadow-md transition hover:bg-blue-100'
+      )}
     >
       <input
         type="checkbox"

@@ -74,7 +74,10 @@ export const Description = () => {
   return (
     <div
       ref={ref}
-      className="relative bg-white dark:bg-blue-200 shadow-lg rounded-2xl p-6 w-full max-w-md mx-auto mt-4"
+      className={twMerge(
+        'relative p-6 w-full max-w-md mx-auto mt-4',
+        ' bg-white dark:bg-blue-200 shadow-lg rounded-2xl'
+      )}
     >
       <Link
         to={'/' + currPaginationQuery}
