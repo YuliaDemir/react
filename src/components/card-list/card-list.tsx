@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge';
+
 import type { Pokemons } from '@/types';
 
 import { Card } from '../';

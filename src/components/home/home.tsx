@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
+import { twMerge } from 'tailwind-merge';
 
 import { LIMIT_NUMBER, MAX, LINK } from '@/constants';
 import { useLocalStorage, usePagination } from '@/hooks';

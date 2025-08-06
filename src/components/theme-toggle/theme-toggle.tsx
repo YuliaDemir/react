@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge';
+
 import { useTheme } from '@/features/theme-context';
 
 export const ThemeToggle = () => {

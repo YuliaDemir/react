@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
+import { twMerge } from 'tailwind-merge';
 
 import { LINK } from '@/constants';
 import { usePagination } from '@/hooks';
