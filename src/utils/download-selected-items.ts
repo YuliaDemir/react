@@ -1,4 +1,4 @@
-import type { Pokemons } from '../../types';
+import type { Pokemons } from '../types';
 
 export function downloadSelectedItems(data: Pokemons[]) {
   if (!data || data.length === 0) return;

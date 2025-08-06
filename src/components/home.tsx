@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 
 import { CardList, Loader, Header, Selected, Flyout } from './';
-import { useLocalStorage, usePagination } from './helpers';
-import { LIMIT_NUMBER, MAX, LINK } from './helpers/consts';
+import { LIMIT_NUMBER, MAX, LINK } from '../constants';
+import { useLocalStorage, usePagination } from '../hooks';
 
 import type { Pokemons } from '../types';
 

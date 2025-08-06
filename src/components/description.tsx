@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 
-import { usePagination } from './helpers';
-import { LINK } from './helpers/consts';
+import { LINK } from '../constants';
+import { usePagination } from '../hooks';
 import { Loader } from './loader';
 
 interface AbilityItem {

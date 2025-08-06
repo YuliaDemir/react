@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 
-import { usePagination } from './helpers';
+import { usePagination } from '../hooks';
 import { addPokemon, deletePokemon } from './slices/selected-slice';
 
 import type { RootState } from './store';

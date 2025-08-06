@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import { downloadSelectedItems } from '../helpers/download-selected-items';
+import { downloadSelectedItems } from '../../utils/download-selected-items';
 
 import type { Pokemons } from '../../types';
 

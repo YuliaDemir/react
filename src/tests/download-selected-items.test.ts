@@ -1,4 +1,4 @@
-import { downloadSelectedItems } from '../components/helpers';
+import { downloadSelectedItems } from '../utils/download-selected-items';
 
 import type { Pokemons } from '../types';
 
