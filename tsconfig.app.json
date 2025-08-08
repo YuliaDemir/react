@@ -1,8 +1,9 @@
 {
-  "compilerOptions": {"baseUrl": "./src",
+  "compilerOptions": {
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@components/*": ["components/*"],
+      "@components/*": ["components/*"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",

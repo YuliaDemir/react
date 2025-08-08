@@ -2,7 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
 
 import type { RootState } from '@/app/store';
-import { clearSelected, downloadSelected } from '@/features/selected-slice';
+import {
+  clearSelected,
+  downloadSelected,
+} from '@/features/slices/selected-slice';
 
 export const Flyout = () => {
   const dispatch = useDispatch();

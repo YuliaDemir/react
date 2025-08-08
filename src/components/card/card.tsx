@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { twMerge } from 'tailwind-merge';
 
 import type { RootState } from '@/app/store';
-import { addPokemon, deletePokemon } from '@/features/selected-slice';
+import { addPokemon, deletePokemon } from '@/features/slices/selected-slice';
 import { usePagination } from '@/hooks';
 import type { Pokemons } from '@/types';
 

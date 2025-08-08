@@ -8,7 +8,7 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@components/*": ["components/*"],
+      "@components/*": ["components/*"]
     },
     "jsx": "react-jsx",
     "types": ["jest", "@testing-library/jest-dom", "jest-fetch-mock"],

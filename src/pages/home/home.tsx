@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
-import { twMerge } from 'tailwind-merge';
 
-import { LIMIT_NUMBER, MAX, LINK } from '@/constants';
+import { CardList, Loader, Header, Selected, Flyout } from '@/components';
+import { LeftRight } from '@/components';
+import { LINK } from '@/constants';
 import { useLocalStorage, usePagination } from '@/hooks';
 import type { Pokemons } from '@/types';
-
-import { CardList, Loader, Header, Selected, Flyout } from '../';
 
 export const Home = () => {
   const [state, setState] = useState<{
@@ -77,11 +76,6 @@ export const Home = () => {
     throw state.error;
   }
 
-  function navigate(curPage: number, left: boolean) {
-    const newPage = curPage - (left ? LIMIT_NUMBER : -LIMIT_NUMBER);
-    setPage(newPage);
-  }
-
   return (
     <div className="p-4 max-w-screen-mdlg mx-auto">
       <Header handleSearch={handleSearch} />
@@ -106,28 +100,7 @@ export const Home = () => {
           )}
         </div>
       )}
-      <div className="flex justify-center gap-4 mt-6">
-        <button
-          className={twMerge(
-            'bg-gray-300  dark:bg-blue-500 hover:bg-gray-400',
-            'px-4 py-2 rounded-2xl disabled:opacity-50'
-          )}
-          onClick={() => navigate(Number(curPage), true)}
-          disabled={Number(curPage) <= 0}
-        >
-          Left
-        </button>
-        <button
-          className={twMerge(
-            'bg-gray-300 dark:bg-blue-500 hover:bg-gray-400',
-            'px-4 py-2 rounded-2xl disabled:opacity-50'
-          )}
-          onClick={() => navigate(Number(curPage), false)}
-          disabled={Number(curPage) > MAX - LIMIT_NUMBER}
-        >
-          Right
-        </button>
-      </div>
+      <LeftRight curPage={curPage} setPage={setPage} />
       <Flyout />
     </div>
   );
