@@ -10,11 +10,11 @@ import type { Pokemons } from '@/types';
 
 export const Card = ({
   name,
-  description,
+  url,
   mainCard,
 }: {
   name: string;
-  description: string;
+  url: string;
   mainCard: boolean;
 }) => {
   const [imgUrl, setImgUrl] = useState<string | undefined>(undefined);
@@ -26,18 +26,18 @@ export const Card = ({
 
   useEffect(() => {
     (async () => {
-      const pokData = await fetch(description).then((res) => res.json());
+      const pokData = await fetch(url).then((res) => res.json());
       const formUrl = pokData.forms[0].url;
       const formData = await fetch(formUrl).then((res) => res.json());
       setImgUrl(formData.sprites.front_default);
     })();
-  }, [description]);
+  }, [url]);
 
   function handleChangeSelect1() {
     if (!isSelected) {
-      dispatch(addPokemon({ name, url: description } as Pokemons));
+      dispatch(addPokemon({ name, url } as Pokemons));
     } else {
-      dispatch(deletePokemon({ name, url: description } as Pokemons));
+      dispatch(deletePokemon({ name, url } as Pokemons));
     }
   }
 

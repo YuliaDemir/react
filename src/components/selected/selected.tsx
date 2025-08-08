@@ -18,7 +18,7 @@ export const Selected = () => {
 
           return (
             <div key={id}>
-              <Card name={card.name} description={card.url} mainCard={false} />
+              <Card name={card.name} url={card.url} mainCard={false} />
             </div>
           );
         })}

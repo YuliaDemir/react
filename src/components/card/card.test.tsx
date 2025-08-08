@@ -27,7 +27,7 @@ describe('Card Component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Card name="pikachu" description="yellow" mainCard />
+          <Card name="pikachu" url="yellow" mainCard />
         </MemoryRouter>
       </Provider>
     );
