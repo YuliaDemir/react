@@ -10,3 +10,4 @@ export { Selected } from './selected/selected';
 export { Flyout } from './flyout/flyout';
 export { ThemeToggle } from './theme-toggle/theme-toggle';
 export { LeftRight } from './left-right/left-right';
+export { AbilityItem } from './ability-item/ability-item';

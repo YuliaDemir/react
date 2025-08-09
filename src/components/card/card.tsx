@@ -1,39 +1,34 @@
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import { twMerge } from 'tailwind-merge';
 
 import type { RootState } from '@/app/store';
+import { Loader } from '@/components/loader/loader';
+import { useGetDataQuery } from '@/features/slices/api-slice';
 import { addPokemon, deletePokemon } from '@/features/slices/selected-slice';
 import { usePagination } from '@/hooks';
-import type { Pokemons } from '@/types';
+import type { CardType, Pokemons } from '@/types';
 
-export const Card = ({
-  name,
-  url,
-  mainCard,
-}: {
-  name: string;
-  url: string;
-  mainCard: boolean;
-}) => {
-  const [imgUrl, setImgUrl] = useState<string | undefined>(undefined);
+export const Card = ({ name, url, mainCard }: CardType) => {
   const [, currPaginationQuery] = usePagination();
   const dispatch = useDispatch();
   const isSelected = useSelector((state: RootState) =>
     state.selected.some((el) => el.name === name)
   );
+  const { data, error, isLoading } = useGetDataQuery(url);
 
-  useEffect(() => {
-    (async () => {
-      const pokData = await fetch(url).then((res) => res.json());
-      const formUrl = pokData.forms[0].url;
-      const formData = await fetch(formUrl).then((res) => res.json());
-      setImgUrl(formData.sprites.front_default);
-    })();
-  }, [url]);
+  if (isLoading) {
+    return <Loader />;
+  }
 
-  function handleChangeSelect1() {
+  if (error) {
+    return (
+      <div>
+        <span>Error loading card for {name}</span>
+      </div>
+    );
+  }
+  function handleChangeSelect() {
     if (!isSelected) {
       dispatch(addPokemon({ name, url } as Pokemons));
     } else {
@@ -55,14 +50,18 @@ export const Card = ({
         type="checkbox"
         name={name}
         checked={isSelected}
-        onChange={handleChangeSelect1}
+        onChange={handleChangeSelect}
         onClick={(e) => e.stopPropagation()}
         className="scale-200"
       />
       {mainCard && (
         <span className="text-lg font-semibold text-blue-500">{name}</span>
       )}
-      <img src={imgUrl} alt={name} className="w-20 h-20 object-contain" />
+      <img
+        src={data?.sprites?.front_default}
+        alt={name}
+        className="w-20 h-20 object-contain"
+      />
     </Link>
   );
 };

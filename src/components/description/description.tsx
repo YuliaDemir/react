@@ -1,77 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
+import { useRef } from 'react';
+import { Link, useParams } from 'react-router';
 import { twMerge } from 'tailwind-merge';
 
+import { AbilityItem, Loader } from '@/components';
 import { LINK } from '@/constants';
+import { useGetDataQuery } from '@/features/slices/api-slice';
 import { usePagination } from '@/hooks';
-
-import { Loader } from '../';
-
-interface AbilityItem {
-  ability: {
-    url: string;
-  };
-}
-
-function findAbilityDescriptionEn(
-  effectEntries: {
-    effect: string;
-    language: { name: string };
-  }[]
-): string | null {
-  const entry = effectEntries.find((e) => e.language.name === 'en');
-  return entry ? entry.effect : null;
-}
+import type { AbilityItemType } from '@/types';
 
 export const Description = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
   const [, currPaginationQuery] = usePagination();
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        navigate('/' + currPaginationQuery);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [navigate]);
-
   const { index } = useParams();
-  const [abilities, setAbilities] = useState<
-    { name: string; description: string }[] | null
-  >(null);
 
-  useEffect(() => {
-    const getDescription = async () => {
-      const data = await fetch(`${LINK}${index}`).then((res) => res.json());
+  const {
+    data: pokemon,
+    error,
+    isLoading,
+  } = useGetDataQuery(`${LINK}${index}`);
 
-      const abilityUrls = data.abilities.map((i: AbilityItem) => i.ability.url);
+  if (isLoading) return <Loader />;
+  if (error || !pokemon) return <div>Error loading data</div>;
 
-      const abilities: {
-        name: string;
-        description: string;
-      }[] = await Promise.all(
-        abilityUrls.map(async (url: string) => {
-          const ability = await fetch(url).then((res) => res.json());
-          return {
-            name: ability.name,
-            description: findAbilityDescriptionEn(ability.effect_entries),
-          };
-        })
-      );
-      setAbilities(abilities);
-    };
-    getDescription();
-  }, [index]);
-
-  if (!abilities) {
-    return <Loader />;
-  }
   return (
     <div
       ref={ref}
@@ -87,16 +37,12 @@ export const Description = () => {
       >
         ✖
       </Link>
-
       <h2 className="text-xl font-bold text-gray-800 mb-4">
         Abilities of {index?.toUpperCase()}
       </h2>
       <ul className="space-y-2">
-        {abilities.map((a) => (
-          <li key={a.name} className="text-sm text-gray-700">
-            <strong className="text-sm text-gray-900">{a.name}</strong>:{' '}
-            {a.description}
-          </li>
+        {pokemon.abilities.map((a: AbilityItemType) => (
+          <AbilityItem url={a.ability.url} />
         ))}
       </ul>
     </div>

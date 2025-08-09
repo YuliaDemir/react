@@ -30,7 +30,7 @@ export const CardList = (props: { pokemons: Pokemons[] }) => {
 
           return (
             <div key={id}>
-              <Card name={card.name} description={card.url} mainCard />
+              <Card name={card.name} url={card.url} mainCard />
             </div>
           );
         })}

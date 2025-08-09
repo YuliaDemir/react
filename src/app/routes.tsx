@@ -1,4 +1,5 @@
-import { About, Description, Home, NotFound } from '@components';
+import { About, Description, NotFound } from '@/components';
+import { Home } from '@/pages/home/home';
 
 export const routes = [
   {
