@@ -1,39 +1,86 @@
 import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router';
+import { useParams } from 'react-router';
 
-import { store } from '@/app/store';
-import { Description } from '@/components';
+import { Loader } from '@/components';
 import { useGetPokemonsQuery } from '@/features/slices/api-slice';
+import { usePagination } from '@/hooks';
 
-jest.mock('@/features/slices/api-slice', () => {
-  const original = jest.requireActual('@/features/slices/api-slice');
-  return {
-    ...original,
-    useGetPokemonsQuery: jest.fn(),
-  };
-});
+import { Description } from './description';
 
-describe('Description component', () => {
+jest.mock('react-router', () => ({
+  ...jest.requireActual('react-router'),
+  useParams: jest.fn(),
+  Link: ({
+    to,
+    children,
+    ...props
+  }: {
+    to: string;
+    children: React.ReactNode;
+  }) => (
+    <a href={to} {...props}>
+      {children}
+    </a>
+  ),
+}));
+
+jest.mock('@/hooks', () => ({
+  usePagination: jest.fn(),
+}));
+
+jest.mock('@/features/slices/api-slice', () => ({
+  useGetPokemonsQuery: jest.fn(),
+}));
+
+jest.mock('@/components', () => ({
+  Loader: jest.fn(() => <div>Loading...</div>),
+  AbilityItem: jest.fn(({ id }) => <div>Ability {id}</div>),
+}));
+
+describe('Description', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useParams as jest.Mock).mockReturnValue({ name: 'pikachu' });
+    (usePagination as jest.Mock).mockReturnValue([null, 'page=1']);
   });
 
-  test('renders Loader when loading', () => {
+  it('renders loader when loading', () => {
     (useGetPokemonsQuery as jest.Mock).mockReturnValue({
-      data: null,
+      data: undefined,
+      error: undefined,
       isLoading: true,
-      error: null,
     });
 
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <Description />
-        </MemoryRouter>
-      </Provider>
-    );
+    render(<Description />);
 
-    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(Loader).toHaveBeenCalled();
+    expect(screen.getByText(/Loading/)).toBeInTheDocument();
+  });
+
+  it('renders error message on error', () => {
+    (useGetPokemonsQuery as jest.Mock).mockReturnValue({
+      data: undefined,
+      error: { message: 'something went wrong' },
+      isLoading: false,
+    });
+
+    render(<Description />);
+
+    expect(
+      screen.getByText(/Error loading description for pikachu/)
+    ).toBeInTheDocument();
+  });
+
+  it('links back to pagination query', () => {
+    (useGetPokemonsQuery as jest.Mock).mockReturnValue({
+      data: { abilities: [] },
+      error: undefined,
+      isLoading: false,
+    });
+
+    render(<Description />);
+
+    const link = screen.getByRole('link', { name: /close/i });
+    expect(link).toHaveAttribute('href', '/page=1');
   });
 });
