@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { twMerge } from 'tailwind-merge';
 
 import type { RootState } from '@/app/store';
-import { Loader } from '@/components/loader/loader';
+import { Loader } from '@/components';
 import { useGetPokemonsQuery } from '@/features/slices/api-slice';
 import { addPokemon, deletePokemon } from '@/features/slices/selected-slice';
 import { usePagination } from '@/hooks';

@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 
-import { Loader } from '../';
+import { Loader } from './loader';
 
 describe('Loader Component', () => {
-  test('Renders ', () => {
+  test('renders loader element with role status', () => {
     render(<Loader />);
-    expect(screen.getByText(/load*/i)).toBeInTheDocument();
+    expect(screen.getByRole('status')).toBeInTheDocument();
   });
 });

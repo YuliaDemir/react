@@ -9,7 +9,7 @@ import {
 
 import { Flyout } from './flyout';
 
-jest.mock('@/features/selected-slice', () => ({
+jest.mock('@/features/slices/selected-slice', () => ({
   clearSelected: jest.fn(() => ({ type: 'CLEAR_SELECTED' })),
   downloadSelected: jest.fn(() => ({ type: 'DOWNLOAD_SELECTED' })),
 }));

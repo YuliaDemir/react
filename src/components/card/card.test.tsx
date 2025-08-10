@@ -6,23 +6,23 @@ import { store } from '@/app/store';
 
 import { Card } from './card';
 
-describe('Card Component', () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-  });
+jest.mock('@/features/slices/api-slice', () => {
+  const originalModule = jest.requireActual('@/features/slices/api-slice');
+  return {
+    ...originalModule,
+    useGetPokemonsQuery: jest.fn(),
+  };
+});
 
-  test('Renders item name and description', () => {
-    fetchMock
-      .mockResponseOnce(
-        JSON.stringify({
-          forms: [{ url: 'some/url/5/' }],
-        })
-      )
-      .mockResponseOnce(
-        JSON.stringify({
-          sprites: { front_default: 'some/img.png' },
-        })
-      );
+import { useGetPokemonsQuery } from '@/features/slices/api-slice';
+
+describe('Card Component', () => {
+  test('renders item name when data is loaded', () => {
+    (useGetPokemonsQuery as jest.Mock).mockReturnValue({
+      data: { sprites: { front_default: 'some/img.png' } },
+      isLoading: false,
+      error: null,
+    });
 
     render(
       <Provider store={store}>
@@ -31,6 +31,11 @@ describe('Card Component', () => {
         </MemoryRouter>
       </Provider>
     );
-    expect(screen.getByText('pikachu')).toBeInTheDocument();
+
+    expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /pikachu/i })).toHaveAttribute(
+      'src',
+      'some/img.png'
+    );
   });
 });

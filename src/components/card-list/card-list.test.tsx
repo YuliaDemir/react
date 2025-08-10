@@ -5,8 +5,8 @@ import type { Pokemons } from '@/types';
 
 import { CardList } from './card-list';
 
-jest.mock('@components', () => ({
-  ...jest.requireActual('@components'),
+jest.mock('@/components', () => ({
+  ...jest.requireActual('@/components'),
   Card: ({ name }: { name: string }) => <div>{name}</div>,
 }));
 
