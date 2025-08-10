@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
 
 import { store } from '@/app/store';
-
-import { Description } from '../';
+import { Description } from '@/components';
+import { useGetPokemonsQuery } from '@/features/slices/api-slice';
 
 jest.mock('@/features/slices/api-slice', () => {
   const original = jest.requireActual('@/features/slices/api-slice');
@@ -13,8 +13,6 @@ jest.mock('@/features/slices/api-slice', () => {
     useGetPokemonsQuery: jest.fn(),
   };
 });
-
-import { useGetPokemonsQuery } from '@/features/slices/api-slice';
 
 describe('Description component', () => {
   beforeEach(() => {

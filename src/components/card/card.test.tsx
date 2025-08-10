@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
 
 import { store } from '@/app/store';
+import { useGetPokemonsQuery } from '@/features/slices/api-slice';
 
 import { Card } from './card';
 
@@ -13,8 +14,6 @@ jest.mock('@/features/slices/api-slice', () => {
     useGetPokemonsQuery: jest.fn(),
   };
 });
-
-import { useGetPokemonsQuery } from '@/features/slices/api-slice';
 
 describe('Card Component', () => {
   test('renders item name when data is loaded', () => {
