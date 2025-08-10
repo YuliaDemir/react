@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 
 import type { RootState } from '@/app/store';
 import { Loader } from '@/components/loader/loader';
-import { useGetDataQuery } from '@/features/slices/api-slice';
+import { useGetPokemonsQuery } from '@/features/slices/api-slice';
 import { addPokemon, deletePokemon } from '@/features/slices/selected-slice';
 import { usePagination } from '@/hooks';
 import type { CardType, Pokemons } from '@/types';
@@ -15,7 +15,10 @@ export const Card = ({ name, url, mainCard }: CardType) => {
   const isSelected = useSelector((state: RootState) =>
     state.selected.some((el) => el.name === name)
   );
-  const { data, error, isLoading } = useGetDataQuery(url);
+  const { data, error, isLoading } = useGetPokemonsQuery({
+    name,
+    page: 0,
+  });
 
   if (isLoading) {
     return <Loader />;

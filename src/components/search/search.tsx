@@ -2,9 +2,7 @@ import { useState } from 'react';
 
 import { useLocalStorage } from '@/hooks';
 
-export const Search = (props: {
-  onSearch: (value: string) => Promise<void>;
-}) => {
+export const Search = (props: { onSearch: (value: string) => void }) => {
   const [LSvalue] = useLocalStorage();
   const [value, setValue] = useState(() => LSvalue || '');
 

@@ -3,25 +3,35 @@ import { Link, useParams } from 'react-router';
 import { twMerge } from 'tailwind-merge';
 
 import { AbilityItem, Loader } from '@/components';
-import { LINK } from '@/constants';
-import { useGetDataQuery } from '@/features/slices/api-slice';
+import { useGetPokemonsQuery } from '@/features/slices/api-slice';
 import { usePagination } from '@/hooks';
 import type { AbilityItemType } from '@/types';
 
 export const Description = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [, currPaginationQuery] = usePagination();
-  const { index } = useParams();
+  const { name } = useParams<{ name: string }>();
+  const { data, error, isLoading } = useGetPokemonsQuery({
+    name: name || '',
+    page: 0,
+  });
 
-  const {
-    data: pokemon,
-    error,
-    isLoading,
-  } = useGetDataQuery(`${LINK}${index}`);
+  if (isLoading) {
+    return <Loader />;
+  }
 
-  if (isLoading) return <Loader />;
-  if (error || !pokemon) return <div>Error loading data</div>;
+  if (error) {
+    return (
+      <div>
+        <span>Error loading description for {name}</span>
+      </div>
+    );
+  }
 
+  const abilityIds = data?.abilities?.map((a: AbilityItemType) => {
+    const params = a.ability.url.split('/');
+    return params[params.length - 2];
+  });
   return (
     <div
       ref={ref}
@@ -38,12 +48,15 @@ export const Description = () => {
         ✖
       </Link>
       <h2 className="text-xl font-bold text-gray-800 mb-4">
-        Abilities of {index?.toUpperCase()}
+        Abilities of {name}
       </h2>
       <ul className="space-y-2">
-        {pokemon.abilities.map((a: AbilityItemType) => (
-          <AbilityItem url={a.ability.url} />
-        ))}
+        {abilityIds &&
+          abilityIds.map((id: string) => (
+            <li key={id} className="text-sm text-gray-700">
+              <AbilityItem id={Number(id)} />
+            </li>
+          ))}
       </ul>
     </div>
   );

@@ -3,6 +3,10 @@ export interface Pokemons {
   url: string;
 }
 
+export interface PokemonsExtended extends Pokemons {
+  abilityIds: number[];
+}
+
 export interface CardType {
   name: string;
   url: string;

@@ -3,9 +3,7 @@ import { Link } from 'react-router';
 import { Search } from '../';
 import { ThemeToggle } from '../';
 
-export const Header = (props: {
-  handleSearch: (query: string) => Promise<void>;
-}) => {
+export const Header = (props: { handleSearch: (query: string) => void }) => {
   return (
     <div className="flex justify-between items-center mb-4">
       <div className="w-32" />

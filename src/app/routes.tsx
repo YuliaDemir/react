@@ -7,7 +7,7 @@ export const routes = [
     element: <Home />,
     children: [
       {
-        path: '/:index',
+        path: '/:name',
         element: <Description />,
       },
     ],
