@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl';
 export const Flyout = () => {
   const dispatch = useDispatch();
   const selected = useSelector((state: RootState) => state.selected);
-    const t = useTranslations('flyout');
+  const t = useTranslations('flyout');
 
   if (selected.length === 0) return null;
 
@@ -25,7 +25,7 @@ export const Flyout = () => {
     >
       <span className="text-lg font-medium">
         {' '}
-        {selected.length} {t("selected")}
+        {selected.length} {t('selected')}
       </span>
       <div className="space-x-3">
         <button

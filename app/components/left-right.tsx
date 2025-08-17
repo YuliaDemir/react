@@ -12,7 +12,7 @@ export const LeftRight = ({
   setPage: (newPage: number) => void;
 }) => {
   const dispatch = useDispatch();
-const t = useTranslations('left-right');
+  const t = useTranslations('left-right');
   function navigate(curPage: number, left: boolean) {
     const newPage = curPage - (left ? LIMIT_NUMBER : -LIMIT_NUMBER);
     setPage(newPage);
@@ -28,7 +28,7 @@ const t = useTranslations('left-right');
         onClick={() => navigate(Number(curPage), true)}
         disabled={Number(curPage) <= 0}
       >
-        {t("left")}
+        {t('left')}
       </button>
       <button
         className={twMerge(
@@ -39,7 +39,7 @@ const t = useTranslations('left-right');
           dispatch(api.util.invalidateTags(['Pokemon', 'Ability']))
         }
       >
-        {t("refetch")}
+        {t('refetch')}
       </button>
       <button
         className={twMerge(
@@ -49,7 +49,7 @@ const t = useTranslations('left-right');
         onClick={() => navigate(Number(curPage), false)}
         disabled={Number(curPage) > MAX - LIMIT_NUMBER}
       >
-        {t("right")}
+        {t('right')}
       </button>
     </div>
   );

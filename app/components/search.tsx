@@ -20,7 +20,7 @@ export const Search = (props: { onSearch: (value: string) => void }) => {
         className="bg-blue-100 text-blue-600 px-4 py-2 rounded-2xl hover:bg-blue-300 transition"
         onClick={() => props.onSearch(value)}
       >
-        {t("search")}
+        {t('search')}
       </button>
     </div>
   );
