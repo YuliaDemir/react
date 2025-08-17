@@ -36,8 +36,7 @@
     "noUncheckedSideEffectImports": true,
     /* Прочее */
     "incremental": true,
-    "noEmit": true,
-    "types": ["jest", "@testing-library/jest-dom", "jest-fetch-mock"]
+    "noEmit": true
   },
   "include": [
     "./dist/types/**/*.ts",
