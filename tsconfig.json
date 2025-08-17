@@ -1,31 +1,26 @@
 {
   "compilerOptions": {
-    /* Общие настройки */
     "baseUrl": ".",
     "paths": {
       "@/*": ["app/*"],
       "@components": ["app/components/index.tsx"]
     },
-    /* Поддержка Next.js */
     "plugins": [
       {
         "name": "next"
       }
     ],
     "jsx": "preserve",
-    /* Поддержка JS и TS */
     "allowJs": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
-    /* Модули и таргет */
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable", "esnext"],
     "module": "ESNext",
-    "moduleResolution": "bundler", // для современных сборщиков
+    "moduleResolution": "bundler",
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    /* Проверки и строгий режим */
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
@@ -34,7 +29,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noUncheckedSideEffectImports": true,
-    /* Прочее */
     "incremental": true,
     "noEmit": true
   },
