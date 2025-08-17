@@ -1,0 +1,42 @@
+{
+  "hello": "Hello",
+  "welcome": "Welcome to Pokemons",
+  "notFound": {
+    "title": "Page not found",
+    "backButton": "Back to the Future"
+  },
+  "error": {
+    "card": "Error loading all cards",
+    "desc": "Error loading description for",
+    "aby": "Error loading ability",
+    "card2": "Error loading ability",
+    "noDesc": "No description"
+  },
+  "desc": {
+    "ability": "Abilities of",
+    "desc": "Error loading description for"
+  },
+  "cardList": {
+    "name": "Pokemon's name",
+    "image": "Pokemon's image"
+  },
+  "flyout": {
+    "selected": "items selected",
+    "all": "Unselect All",
+    "download": "Download"
+  },
+  "about": {
+    "about": "About"
+  },
+  "selected": {
+    "select": "Selected"
+  },
+  "search": {
+    "search": "Search"
+  },
+  "left-right": {
+    "left": "Left",
+    "refetch": "Refetch",
+    "right": "Right"
+  }
+}
