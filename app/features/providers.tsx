@@ -21,7 +21,6 @@ export function Providers({
     <Provider store={store}>
       <ThemeProvider>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {locale}
           {children}
         </NextIntlClientProvider>
       </ThemeProvider>

@@ -1,4 +1,5 @@
 import { Loader } from '@components';
+import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
 
@@ -8,10 +9,12 @@ import type { RootState } from '@/features/slices/store';
 import { usePagination } from '@/hooks';
 import type { CardType, Pokemons } from '@/types';
 import { Link } from '@/utils/navigation';
+import { useTranslations } from 'next-intl';
 
 export const Card = ({ name, url, mainCard }: CardType) => {
   const [, currPaginationQuery] = usePagination();
   const dispatch = useDispatch();
+  const t = useTranslations('error');
   const isSelected = useSelector((state: RootState) =>
     state.selected.some((el) => el.name === name)
   );
@@ -27,7 +30,9 @@ export const Card = ({ name, url, mainCard }: CardType) => {
   if (error) {
     return (
       <div>
-        <span>Error loading card for {name}</span>
+        <span>
+          {t('card2')} {name}
+        </span>
       </div>
     );
   }
@@ -60,10 +65,12 @@ export const Card = ({ name, url, mainCard }: CardType) => {
       {mainCard && (
         <span className="text-lg font-semibold text-blue-500">{name}</span>
       )}
-      <img
+      <Image
         src={data?.sprites?.front_default}
         alt={name}
-        className="w-20 h-20 object-contain"
+        width={80}
+        height={80}
+        className="object-contain"
       />
     </Link>
   );

@@ -6,10 +6,12 @@ import {
   downloadSelected,
 } from '@/features/slices/selected-slice';
 import type { RootState } from '@/features/slices/store';
+import { useTranslations } from 'next-intl';
 
 export const Flyout = () => {
   const dispatch = useDispatch();
   const selected = useSelector((state: RootState) => state.selected);
+    const t = useTranslations('flyout');
 
   if (selected.length === 0) return null;
 
@@ -23,7 +25,7 @@ export const Flyout = () => {
     >
       <span className="text-lg font-medium">
         {' '}
-        {selected.length} items selected
+        {selected.length} {t("selected")}
       </span>
       <div className="space-x-3">
         <button
@@ -33,7 +35,7 @@ export const Flyout = () => {
           )}
           onClick={() => dispatch(clearSelected())}
         >
-          Unselect All
+          {t('all')}
         </button>
         <button
           className={twMerge(
@@ -42,7 +44,7 @@ export const Flyout = () => {
           )}
           onClick={() => dispatch(downloadSelected())}
         >
-          Download
+          {t('download')}
         </button>
       </div>
     </div>

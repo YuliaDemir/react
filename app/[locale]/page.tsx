@@ -1,5 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Suspense, useCallback, useEffect, useState } from 'react';
 
 import {
@@ -24,6 +25,8 @@ function Home() {
     ? { name: searchValue, page: 0 }
     : { page: Number(page), name: '' };
 
+  const t = useTranslations('error');
+
   const { data, error, isLoading } = useGetPokemonsQuery(queryParam);
   useEffect(() => {
     if (curLSValue) {
@@ -46,7 +49,7 @@ function Home() {
   if (error) {
     return (
       <div>
-        <span>Error loading all cards</span>
+        <span>({t('cards')})</span>
       </div>
     );
   }

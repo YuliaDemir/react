@@ -1,4 +1,42 @@
 {
-  "hello": "Hello",
-  "welcome": "Welcome to Pokemons"
+  "hello": "Bonjour",
+  "welcome": "Bienvenue chez les Pokémons",
+  "notFound": {
+    "title": "Page non trouvée",
+    "backButton": "Retour vers le futur"
+  },
+  "error": {
+    "card": "Erreur lors du chargement de toutes les cartes",
+    "desc": "Erreur lors du chargement de la description pour",
+    "aby": "Erreur lors du chargement de la capacité",
+    "card2": "Erreur lors du chargement de la capacité",
+    "noDesc": "Pas de description"
+  },
+  "desc": {
+    "ability": "Capacités de",
+    "desc": "Erreur lors du chargement de la description pour"
+  },
+  "cardList": {
+    "name": "Nom du Pokémon",
+    "image": "Image du Pokémon"
+  },
+  "flyout": {
+    "selected": "éléments sélectionnés",
+    "all": "Tout désélectionner",
+    "download": "Télécharger"
+  },
+  "about": {
+    "about": "À propos"
+  },
+  "selected": {
+    "select": "Sélectionné"
+  },
+  "search": {
+    "search": "Rechercher"
+  },
+  "left-right": {
+    "left": "Gauche",
+    "refetch": "Recharger",
+    "right": "Droite"
+  }
 }

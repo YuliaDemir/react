@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
 import { useLocalStorage } from '@/hooks';
+import { useTranslations } from 'next-intl';
 
 export const Search = (props: { onSearch: (value: string) => void }) => {
   const [LSvalue] = useLocalStorage();
   const [value, setValue] = useState(() => LSvalue || '');
+  const t = useTranslations('search');
 
   return (
     <div className="flex gap-2 items-center mb-4">
@@ -18,7 +20,7 @@ export const Search = (props: { onSearch: (value: string) => void }) => {
         className="bg-blue-100 text-blue-600 px-4 py-2 rounded-2xl hover:bg-blue-300 transition"
         onClick={() => props.onSearch(value)}
       >
-        Search
+        {t("search")}
       </button>
     </div>
   );

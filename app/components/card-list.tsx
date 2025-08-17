@@ -3,9 +3,11 @@ import { Card } from '@components';
 import { twMerge } from 'tailwind-merge';
 
 import type { Pokemons } from '@/types';
+import { useTranslations } from 'next-intl';
 
 export const CardList = (props: { pokemons: Pokemons[] }) => {
   const { pokemons } = props;
+  const t = useTranslations('cardList');
 
   return (
     <div className="max-w-screen-lg mx-auto p-4">
@@ -17,10 +19,10 @@ export const CardList = (props: { pokemons: Pokemons[] }) => {
         )}
       >
         <h3 className="font-semibold text-lg dark:text-blue-600">
-          Pokemon's name
+          {t('name')}
         </h3>
         <h3 className="font-semibold text-lg dark:text-blue-600">
-          Pokemon's image
+          {t('image')}
         </h3>
       </header>
       <main className="grid grid-cols-1 gap-4 max-h-96 overflow-auto">

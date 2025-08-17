@@ -3,6 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { LIMIT_NUMBER, MAX } from '@/constants';
 import { api } from '@/features/slices/api-slice';
+import { useTranslations } from 'next-intl';
 export const LeftRight = ({
   curPage,
   setPage,
@@ -11,7 +12,7 @@ export const LeftRight = ({
   setPage: (newPage: number) => void;
 }) => {
   const dispatch = useDispatch();
-
+const t = useTranslations('left-right');
   function navigate(curPage: number, left: boolean) {
     const newPage = curPage - (left ? LIMIT_NUMBER : -LIMIT_NUMBER);
     setPage(newPage);
@@ -27,7 +28,7 @@ export const LeftRight = ({
         onClick={() => navigate(Number(curPage), true)}
         disabled={Number(curPage) <= 0}
       >
-        Left
+        {t("left")}
       </button>
       <button
         className={twMerge(
@@ -38,7 +39,7 @@ export const LeftRight = ({
           dispatch(api.util.invalidateTags(['Pokemon', 'Ability']))
         }
       >
-        Refetch
+        {t("refetch")}
       </button>
       <button
         className={twMerge(
@@ -48,7 +49,7 @@ export const LeftRight = ({
         onClick={() => navigate(Number(curPage), false)}
         disabled={Number(curPage) > MAX - LIMIT_NUMBER}
       >
-        Right
+        {t("right")}
       </button>
     </div>
   );
