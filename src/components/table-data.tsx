@@ -38,7 +38,6 @@ export const TableData = () => {
               <CardPrimaryHeader
                 iso_code={iso_code}
                 population={latest?.population ?? 'N/A'}
-                region="4444"
                 country={country}
                 isOpen={isOpen}
                 onClick={() => setOpenCountry(isOpen ? null : iso_code)}

@@ -3,7 +3,6 @@ import type { CardPrimaryHeaderType } from '../types';
 export const CardPrimaryHeader = ({
   iso_code,
   country,
-  region,
   population,
   onClick,
   isOpen,
@@ -21,7 +20,6 @@ export const CardPrimaryHeader = ({
         </div>
         <div>
           <div className="text-sm font-semibold">{country}</div>
-          <div className="text-xs text-gray-500">{region ?? 'N/A'}</div>
         </div>
       </div>
 

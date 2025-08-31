@@ -17,7 +17,6 @@ export type JsonType = {
 export type CardPrimaryHeaderType = {
   iso_code: string;
   country: string;
-  region: string;
   population: string | number;
   isOpen: boolean;
   onClick: () => void;
