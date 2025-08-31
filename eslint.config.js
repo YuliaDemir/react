@@ -83,11 +83,7 @@ const eslintConfig = tseslint.config(
     },
   },
   {
-    ignores: [
-      '**/node_modules/**', // внешние зависимости
-      'dist/**', // Vite build
-      '__content/**', // Content
-    ],
+    ignores: ['**/node_modules/**', 'dist/**', '__content/**'],
   },
 );
 

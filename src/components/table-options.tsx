@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
-import { ADDITIONAL_COLUMNS } from "../constants"
-import { saveSelectedColomns } from "../state/slice-year";
+import { ADDITIONAL_COLUMNS } from '../constants';
+import { saveSelectedColomns } from '../state/slice-colomns';
 
 export function TableOptions() {
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedCols, setSelectedCols] = useState<string[]>([]);
   const dispatch = useDispatch();
@@ -14,17 +13,16 @@ export function TableOptions() {
   const toggleModal = () => setIsOpen(!isOpen);
   const handleSave = () => {
     setIsOpen(false);
-    dispatch(saveSelectedColomns(selectedCols))
-
-  }
+    dispatch(saveSelectedColomns(selectedCols));
+  };
 
   const handleCheckboxChange = (col: string) => {
     setSelectedCols((prev) =>
-      prev.includes(col) ? prev.filter((c) => c !== col) : [...prev, col]
+      prev.includes(col) ? prev.filter((c) => c !== col) : [...prev, col],
     );
   };
-  
-return (
+
+  return (
     <div className="p-6">
       <button
         onClick={toggleModal}
@@ -67,6 +65,6 @@ return (
           </div>
         </div>
       )}
-
-</div>
-)}
+    </div>
+  );
+}

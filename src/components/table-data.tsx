@@ -1,20 +1,25 @@
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import { CardData } from './card-data';
 import { CardPrimaryHeader } from './card-primary-header';
 import { CardSecondaryHeader } from './card-secondary-header';
 import { Loader } from './loader';
+import { setYears } from '../state/slice-year-search';
 import { useBigJson } from '../utils/use-big-json';
 
 export const TableData = () => {
   const { data, loading } = useBigJson();
   const [openCountry, setOpenCountry] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   if (loading) {
     return <Loader />;
   }
 
   const countries = Object.entries(data);
+  dispatch(setYears(countries[0][1].data.map((d) => d.year).reverse()));
 
   return (
     <div className="grid gap-4">
